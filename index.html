@@ -352,7 +352,47 @@
   </footer>
 
   <!-- Scripts -->
-  <script>
+  <script type="module">
+    import { onAuthChange, logoutUser } from './js/firebase-config.js';
+    
+    // Check auth state and update UI
+    onAuthChange((user) => {
+      const loginBtn = document.querySelector('a[href="login.html"]');
+      const registerBtn = document.querySelector('a[href="registro.html"]');
+      const loginBtnMobile = document.querySelector('.header__mobile-buttons a[href="login.html"]');
+      const registerBtnMobile = document.querySelector('.header__mobile-buttons a[href="registro.html"]');
+      
+      if (user) {
+        // User is logged in - change buttons
+        if (loginBtn) {
+          loginBtn.textContent = 'Mi cuenta';
+          loginBtn.href = '#';
+        }
+        if (registerBtn) {
+          registerBtn.textContent = 'Salir';
+          registerBtn.href = '#';
+          registerBtn.addEventListener('click', async (e) => {
+            e.preventDefault();
+            await logoutUser();
+            window.location.reload();
+          });
+        }
+        if (loginBtnMobile) {
+          loginBtnMobile.textContent = 'Mi cuenta';
+          loginBtnMobile.href = '#';
+        }
+        if (registerBtnMobile) {
+          registerBtnMobile.textContent = 'Salir';
+          registerBtnMobile.href = '#';
+          registerBtnMobile.addEventListener('click', async (e) => {
+            e.preventDefault();
+            await logoutUser();
+            window.location.reload();
+          });
+        }
+      }
+    });
+
     // Header scroll effect
     const header = document.getElementById('header');
     window.addEventListener('scroll', () => {
@@ -366,8 +406,10 @@
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const target = document.querySelector(href);
         if (target) {
           target.scrollIntoView({
             behavior: 'smooth',
