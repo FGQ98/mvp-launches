@@ -2,6 +2,27 @@
    MVP LAUNCHES - Global Styles
    ============================================ */
 
+/* ---- Global Watermark ---- */
+.page-watermark {
+  position: fixed;
+  right: -5%;
+  bottom: 10%;
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.page-watermark img {
+  width: 400px;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .page-watermark img {
+    width: 250px;
+  }
+}
+
 /* Reset básico */
 *, *::before, *::after {
   box-sizing: border-box;

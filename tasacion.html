@@ -508,6 +508,11 @@
 </head>
 <body>
 
+  <!-- Watermark -->
+  <div class="page-watermark">
+    <img src="assets/logo-mvp.png" alt="">
+  </div>
+
   <!-- ============ HEADER ============ -->
   <header class="header" id="header">
     <div class="container">
@@ -1072,14 +1077,20 @@
             </div>
             
             <div class="field">
-              <label class="field__label">Último paso: tu email para recibir el informe *</label>
+              <label class="field__label">¿Quieres contarnos algo más? (opcional)</label>
+              <p class="field__hint">Si hay algo relevante que no hayamos preguntado, cuéntanoslo aquí. Recuerda: no incluyas información sensible como código, credenciales o datos confidenciales.</p>
+              <textarea class="field__textarea" name="comentarios_adicionales" placeholder="Cualquier contexto adicional que consideres importante..."></textarea>
+            </div>
+            
+            <div class="field">
+              <label class="field__label">Tu email para recibir el informe *</label>
               <input type="email" class="field__input" name="email" required placeholder="tu@email.com">
             </div>
             
             <div class="field">
               <label class="checkbox-item" style="display: inline-flex;">
                 <input type="checkbox" name="acepta_terminos" required>
-                <span>Acepto que mis datos se utilicen según la <a href="manifiesto.html" target="_blank">política descrita en el manifiesto</a></span>
+                <span>Acepto los <a href="terminos.html" target="_blank">Términos y Condiciones</a> y la <a href="privacidad.html" target="_blank">Política de Privacidad</a></span>
               </label>
             </div>
           </div>
@@ -1161,7 +1172,7 @@
       <div class="comite-info">
         <h2 class="comite-info__title">Análisis 360°</h2>
         <p class="comite-info__desc">
-          Tu proyecto es evaluado desde cinco perspectivas complementarias, para que veas 
+          Tu proyecto es evaluado desde cuatro perspectivas complementarias, para que veas 
           las oportunidades y riesgos desde todos los ángulos.
         </p>
         
@@ -1203,15 +1214,6 @@
               </svg>
             </div>
             <p class="comite-info__label">Usuarios objetivo</p>
-          </div>
-          <div class="comite-info__item">
-            <div class="comite-info__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
-                <polyline points="17 6 23 6 23 12"/>
-              </svg>
-            </div>
-            <p class="comite-info__label">Tendencias</p>
           </div>
         </div>
         
