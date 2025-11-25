@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Emprende sin partir de cero. Conectamos creadores con MVP funcional con emprendedores que aportan la ejecución. Oxígeno + Chispa = Despegue.">
+  
+  <title>Sé la Chispa | MVP Launches</title>
+  
+  <link rel="icon" type="image/png" href="assets/logo-mvp.png">
+  
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/home.css">
+  
+  <style>
+    .chispa {
+      padding-top: calc(72px + var(--space-12));
+      padding-bottom: var(--space-16);
+      min-height: 100vh;
+    }
+    
+    .chispa__hero {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto var(--space-16);
+    }
+    
+    .chispa__badge {
+      display: inline-block;
+      padding: var(--space-2) var(--space-4);
+      background-color: var(--color-accent-light);
+      color: var(--color-accent);
+      font-size: var(--text-sm);
+      font-weight: var(--font-medium);
+      border-radius: var(--radius-full);
+      margin-bottom: var(--space-6);
+    }
+    
+    .chispa__title {
+      font-size: var(--text-5xl);
+      margin-bottom: var(--space-6);
+      line-height: 1.1;
+    }
+    
+    .chispa__title span {
+      color: var(--color-accent);
+    }
+    
+    .chispa__subtitle {
+      font-size: var(--text-xl);
+      color: var(--color-gray-500);
+      line-height: 1.6;
+      max-width: 650px;
+      margin: 0 auto;
+    }
+    
+    /* Ecuación visual */
+    .equation {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-6);
+      margin: var(--space-12) auto;
+      flex-wrap: wrap;
+    }
+    
+    .equation__item {
+      text-align: center;
+    }
+    
+    .equation__icon {
+      width: 80px;
+      height: 80px;
+      background-color: var(--color-gray-100);
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto var(--space-3);
+    }
+    
+    .equation__icon--accent {
+      background-color: var(--color-accent-light);
+    }
+    
+    .equation__icon--dark {
+      background-color: var(--color-gray-800);
+    }
+    
+    .equation__icon svg {
+      width: 36px;
+      height: 36px;
+      color: var(--color-gray-600);
+    }
+    
+    .equation__icon--accent svg {
+      color: var(--color-accent);
+    }
+    
+    .equation__icon--dark svg {
+      color: white;
+    }
+    
+    .equation__label {
+      font-weight: var(--font-semibold);
+      color: var(--color-gray-700);
+    }
+    
+    .equation__desc {
+      font-size: var(--text-sm);
+      color: var(--color-gray-500);
+    }
+    
+    .equation__operator {
+      font-size: var(--text-3xl);
+      font-weight: var(--font-bold);
+      color: var(--color-gray-300);
+    }
+    
+    /* Qué es y qué no es */
+    .clarity {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-8);
+      max-width: 900px;
+      margin: 0 auto var(--space-16);
+    }
+    
+    .clarity__box {
+      padding: var(--space-8);
+      border-radius: var(--radius-xl);
+    }
+    
+    .clarity__box--no {
+      background-color: var(--color-gray-50);
+      border: 2px solid var(--color-gray-100);
+    }
+    
+    .clarity__box--yes {
+      background-color: var(--color-accent-light);
+      border: 2px solid var(--color-accent);
+    }
+    
+    .clarity__title {
+      font-size: var(--text-lg);
+      margin-bottom: var(--space-4);
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+    
+    .clarity__box--no .clarity__title {
+      color: var(--color-gray-500);
+    }
+    
+    .clarity__box--yes .clarity__title {
+      color: var(--color-accent);
+    }
+    
+    .clarity__list {
+      list-style: none;
+    }
+    
+    .clarity__list li {
+      padding: var(--space-2) 0;
+      padding-left: var(--space-6);
+      position: relative;
+      color: var(--color-gray-600);
+    }
+    
+    .clarity__box--no .clarity__list li::before {
+      content: "✕";
+      position: absolute;
+      left: 0;
+      color: var(--color-gray-400);
+    }
+    
+    .clarity__box--yes .clarity__list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--color-accent);
+      font-weight: bold;
+    }
+    
+    /* Quote */
+    .chispa__quote {
+      max-width: 700px;
+      margin: 0 auto var(--space-16);
+      text-align: center;
+      padding: var(--space-8);
+      background: linear-gradient(135deg, var(--color-gray-50) 0%, var(--color-accent-light) 100%);
+      border-radius: var(--radius-xl);
+    }
+    
+    .chispa__quote p {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: var(--font-medium);
+      color: var(--color-gray-700);
+      font-style: italic;
+      line-height: 1.5;
+    }
+    
+    .chispa__quote span {
+      color: var(--color-accent);
+      font-weight: var(--font-semibold);
+    }
+    
+    /* Formulario */
+    .chispa__form-section {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .chispa__form-header {
+      text-align: center;
+      margin-bottom: var(--space-10);
+    }
+    
+    .chispa__form-title {
+      font-size: var(--text-3xl);
+      margin-bottom: var(--space-3);
+    }
+    
+    .chispa__form-subtitle {
+      color: var(--color-gray-500);
+    }
+    
+    .chispa__form {
+      background: var(--color-white);
+      padding: var(--space-10);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .field {
+      margin-bottom: var(--space-6);
+    }
+    
+    .field__label {
+      display: block;
+      font-weight: var(--font-medium);
+      margin-bottom: var(--space-2);
+      color: var(--color-gray-700);
+    }
+    
+    .field__hint {
+      font-size: var(--text-sm);
+      color: var(--color-gray-400);
+      margin-bottom: var(--space-2);
+    }
+    
+    .field__input,
+    .field__textarea,
+    .field__select {
+      width: 100%;
+      padding: var(--space-4);
+      font-family: var(--font-primary);
+      font-size: var(--text-base);
+      border: 2px solid var(--color-gray-100);
+      border-radius: var(--radius-md);
+      transition: border-color var(--transition-fast);
+    }
+    
+    .field__input:focus,
+    .field__textarea:focus,
+    .field__select:focus {
+      outline: none;
+      border-color: var(--color-accent);
+    }
+    
+    .field__textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+    
+    .field__row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-4);
+    }
+    
+    /* Checkbox grid para tipo de chispa */
+    .spark-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-3);
+    }
+    
+    .spark-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-4);
+      border: 2px solid var(--color-gray-100);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    
+    .spark-item:hover {
+      border-color: var(--color-gray-200);
+      background-color: var(--color-gray-50);
+    }
+    
+    .spark-item.selected {
+      border-color: var(--color-accent);
+      background-color: var(--color-accent-light);
+    }
+    
+    .spark-item input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--color-accent);
+    }
+    
+    .spark-item span {
+      font-size: var(--text-sm);
+    }
+    
+    /* Radio options */
+    .radio-options {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    
+    .radio-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-4);
+      border: 2px solid var(--color-gray-100);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    
+    .radio-item:hover {
+      border-color: var(--color-gray-200);
+    }
+    
+    .radio-item.selected {
+      border-color: var(--color-accent);
+      background-color: var(--color-accent-light);
+    }
+    
+    .radio-item input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--color-accent);
+    }
+    
+    .radio-item span {
+      font-size: var(--text-sm);
+    }
+    
+    /* Checkbox terms */
+    .terms-check {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+      padding: var(--space-4);
+      background-color: var(--color-gray-50);
+      border-radius: var(--radius-md);
+      margin-bottom: var(--space-6);
+    }
+    
+    .terms-check input {
+      width: 20px;
+      height: 20px;
+      accent-color: var(--color-accent);
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+    
+    .terms-check span {
+      font-size: var(--text-sm);
+      color: var(--color-gray-600);
+      line-height: 1.5;
+    }
+    
+    .chispa__submit {
+      width: 100%;
+      padding: var(--space-4);
+      font-size: var(--text-lg);
+    }
+    
+    /* Mensaje de éxito - ya no se usa, reemplazado por challenge */
+    .success-message {
+      display: none;
+    }
+    
+    /* Disclaimer */
+    .disclaimer {
+      max-width: 700px;
+      margin: var(--space-10) auto 0;
+      padding: var(--space-5);
+      background-color: var(--color-gray-50);
+      border-radius: var(--radius-lg);
+      font-size: var(--text-sm);
+      color: var(--color-gray-500);
+      text-align: center;
+    }
+    
+    /* Challenge section */
+    .challenge {
+      display: none;
+      text-align: center;
+    }
+    
+    .challenge.visible {
+      display: block;
+    }
+    
+    .challenge__header {
+      margin-bottom: var(--space-8);
+    }
+    
+    .challenge__icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--color-accent-light) 0%, #fff3e0 100%);
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto var(--space-4);
+    }
+    
+    .challenge__icon svg {
+      width: 35px;
+      height: 35px;
+      color: var(--color-accent);
+    }
+    
+    .challenge__title {
+      font-size: var(--text-2xl);
+      margin-bottom: var(--space-2);
+    }
+    
+    .challenge__intro {
+      color: var(--color-gray-500);
+      font-size: var(--text-base);
+    }
+    
+    .challenge__question {
+      background: linear-gradient(135deg, var(--color-gray-50) 0%, var(--color-accent-light) 100%);
+      padding: var(--space-8);
+      border-radius: var(--radius-xl);
+      margin-bottom: var(--space-6);
+      border-left: 4px solid var(--color-accent);
+    }
+    
+    .challenge__question p {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: var(--font-medium);
+      color: var(--color-gray-700);
+      line-height: 1.5;
+      margin: 0;
+    }
+    
+    .challenge__question .challenge__context {
+      font-family: var(--font-primary);
+      font-size: var(--text-sm);
+      color: var(--color-gray-500);
+      margin-top: var(--space-3);
+      font-weight: var(--font-normal);
+    }
+    
+    .challenge__answer {
+      min-height: 120px;
+      text-align: left;
+    }
+    
+    .challenge__skip {
+      width: 100%;
+      margin-top: var(--space-3);
+      color: var(--color-gray-400);
+    }
+    
+    .challenge__skip:hover {
+      color: var(--color-gray-600);
+    }
+    
+    /* Final message */
+    .final-message {
+      display: none;
+      text-align: center;
+      padding: var(--space-10);
+    }
+    
+    .final-message.visible {
+      display: block;
+    }
+    
+    .final-message h3 {
+      font-size: var(--text-2xl);
+      margin-bottom: var(--space-3);
+    }
+    
+    .final-message p {
+      color: var(--color-gray-500);
+      margin-bottom: var(--space-2);
+    }
+    
+    @media (max-width: 768px) {
+      .chispa__title {
+        font-size: var(--text-3xl);
+      }
+      
+      .equation {
+        gap: var(--space-4);
+      }
+      
+      .equation__icon {
+        width: 60px;
+        height: 60px;
+      }
+      
+      .equation__icon svg {
+        width: 28px;
+        height: 28px;
+      }
+      
+      .clarity {
+        grid-template-columns: 1fr;
+      }
+      
+      .chispa__form {
+        padding: var(--space-6);
+      }
+      
+      .field__row,
+      .spark-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Watermark -->
+  <div class="page-watermark">
+    <img src="assets/logo-mvp.png" alt="">
+  </div>
+
+  <!-- ============ HEADER ============ -->
+  <header class="header" id="header">
+    <div class="container">
+      <div class="header__inner">
+        <a href="index.html" class="header__logo">
+          <img src="assets/logo-mvp.png" alt="MVP Launches">
+          <span class="header__logo-text">mvp<span>launches</span></span>
+        </a>
+        
+        <nav class="header__nav header__nav--desktop">
+          <a href="index.html#que-es">Qué es</a>
+          <a href="index.html#proyectos">Proyectos</a>
+          <a href="tasacion.html">Tasación</a>
+          <a href="manifiesto.html">Manifiesto</a>
+          <div class="header__lang">
+            <button class="header__lang-btn active" data-lang="es">ES</button>
+            <span class="header__lang-sep">|</span>
+            <button class="header__lang-btn" data-lang="en">EN</button>
+          </div>
+          <a href="login.html" class="btn btn--secondary btn--small">Acceder</a>
+          <a href="registro.html" class="btn btn--primary btn--small">Registro</a>
+        </nav>
+        
+        <button class="header__hamburger" id="menuToggle" aria-label="Abrir menú">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+    
+    <nav class="header__nav header__nav--mobile" id="mobileNav">
+      <a href="index.html#que-es">Qué es</a>
+      <a href="index.html#proyectos">Proyectos</a>
+      <a href="tasacion.html">Tasación</a>
+      <a href="manifiesto.html">Manifiesto</a>
+      <div class="header__lang">
+        <button class="header__lang-btn active" data-lang="es">ES</button>
+        <span class="header__lang-sep">|</span>
+        <button class="header__lang-btn" data-lang="en">EN</button>
+      </div>
+      <div class="header__mobile-buttons">
+        <a href="login.html" class="btn btn--secondary">Acceder</a>
+        <a href="registro.html" class="btn btn--primary">Registro</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="chispa">
+    <div class="container">
+      
+      <!-- Hero -->
+      <div class="chispa__hero">
+        <span class="chispa__badge">Para emprendedores sin idea</span>
+        <h1 class="chispa__title">Las mejores ideas necesitan<br>a alguien que las <span>encienda</span></h1>
+        <p class="chispa__subtitle">
+          No vendemos proyectos. Conectamos creadores que tienen el combustible 
+          con emprendedores que aportan la chispa. Juntos, despegue.
+        </p>
+      </div>
+      
+      <!-- Ecuación visual -->
+      <div class="equation">
+        <div class="equation__item">
+          <div class="equation__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 6v6l4 2"/>
+            </svg>
+          </div>
+          <p class="equation__label">Oxígeno</p>
+          <p class="equation__desc">El creador: idea + MVP</p>
+        </div>
+        
+        <span class="equation__operator">+</span>
+        
+        <div class="equation__item">
+          <div class="equation__icon equation__icon--accent">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            </svg>
+          </div>
+          <p class="equation__label">Chispa</p>
+          <p class="equation__desc">Tú: ejecución + energía</p>
+        </div>
+        
+        <span class="equation__operator">=</span>
+        
+        <div class="equation__item">
+          <div class="equation__icon equation__icon--dark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+              <path d="M2 17l10 5 10-5"/>
+              <path d="M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <p class="equation__label">Despegue</p>
+          <p class="equation__desc">El proyecto en marcha</p>
+        </div>
+      </div>
+      
+      <!-- Qué es y qué no es -->
+      <div class="clarity">
+        <div class="clarity__box clarity__box--no">
+          <h3 class="clarity__title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="15" y1="9" x2="9" y2="15"/>
+              <line x1="9" y1="9" x2="15" y2="15"/>
+            </svg>
+            Esto NO es
+          </h3>
+          <ul class="clarity__list">
+            <li>Comprar una idea o un proyecto</li>
+            <li>Ser empleado de otro emprendedor</li>
+            <li>Empezar solo con todo en contra</li>
+            <li>Una franquicia o un negocio llave en mano</li>
+            <li>Invertir dinero sin aportar trabajo</li>
+          </ul>
+        </div>
+        
+        <div class="clarity__box clarity__box--yes">
+          <h3 class="clarity__title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+            Esto SÍ es
+          </h3>
+          <ul class="clarity__list">
+            <li>Unirte a algo que ya existe y funciona</li>
+            <li>Aportar lo que el creador no tiene</li>
+            <li>Emprender en equipo desde el día uno</li>
+            <li>Compartir el riesgo y el éxito como socios</li>
+            <li>Trabajar en algo con sentido, sin inventar la rueda</li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Quote -->
+      <div class="chispa__quote">
+        <p>"Trabajar en equipo con <span>roles diferentes</span> también es emprender. La propulsión es la unión del <span>oxígeno y la chispa</span>."</p>
+      </div>
+      
+      <!-- Formulario -->
+      <div class="chispa__form-section">
+        <div class="chispa__form-header">
+          <h2 class="chispa__form-title">¿Eres la chispa?</h2>
+          <p class="chispa__form-subtitle">Cuéntanos qué aportas. Si encajas con algún proyecto, te contactamos.</p>
+        </div>
+        
+        <div class="chispa__form">
+          <form id="chispaForm">
+            
+            <div class="field__row">
+              <div class="field">
+                <label class="field__label">Nombre *</label>
+                <input type="text" class="field__input" name="nombre" required>
+              </div>
+              <div class="field">
+                <label class="field__label">Apellidos *</label>
+                <input type="text" class="field__input" name="apellidos" required>
+              </div>
+            </div>
+            
+            <div class="field">
+              <label class="field__label">Email *</label>
+              <input type="email" class="field__input" name="email" required>
+            </div>
+            
+            <div class="field">
+              <label class="field__label">LinkedIn *</label>
+              <p class="field__hint">Nos ayuda a conocerte mejor</p>
+              <input type="url" class="field__input" name="linkedin" placeholder="https://linkedin.com/in/tu-perfil" required>
+            </div>
+            
+            <div class="field">
+              <label class="field__label">¿Qué tipo de chispa eres? *</label>
+              <p class="field__hint">Marca todas las que apliquen</p>
+              <div class="spark-grid">
+                <label class="spark-item">
+                  <input type="checkbox" name="tipo_chispa" value="comercial">
+                  <span>Comercial / Ventas</span>
+                </label>
+                <label class="spark-item">
+                  <input type="checkbox" name="tipo_chispa" value="marketing">
+                  <span>Marketing / Growth</span>
+                </label>
+                <label class="spark-item">
+                  <input type="checkbox" name="tipo_chispa" value="operaciones">
+                  <span>Operaciones / Gestión</span>
+                </label>
+                <label class="spark-item">
+                  <input type="checkbox" name="tipo_chispa" value="financiero">
+                  <span>Financiero / Inversión</span>
+                </label>
+                <label class="spark-item">
+                  <input type="checkbox" name="tipo_chispa" value="producto">
+                  <span>Producto / Estrategia</span>
+                </label>
+                <label class="spark-item">
+                  <input type="checkbox" name="tipo_chispa" value="sector">
+                  <span>Experto en sector específico</span>
+                </label>
+              </div>
+            </div>
+            
+            <div class="field">
+              <label class="field__label">Si eres experto en algún sector, ¿cuál?</label>
+              <input type="text" class="field__input" name="sector_especifico" placeholder="Ej: Salud, Fintech, Retail, Deporte...">
+            </div>
+            
+            <div class="field">
+              <label class="field__label">¿Por qué quieres emprender así? *</label>
+              <p class="field__hint">2-3 frases sobre tu motivación</p>
+              <textarea class="field__textarea" name="motivacion" required placeholder="Cuéntanos qué te atrae de este modelo..."></textarea>
+            </div>
+            
+            <div class="field">
+              <label class="field__label">¿Cuánto tiempo puedes dedicar? *</label>
+              <div class="radio-options">
+                <label class="radio-item">
+                  <input type="radio" name="dedicacion" value="side" required>
+                  <span>Side project (menos de 10h/semana)</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="dedicacion" value="media">
+                  <span>Media dedicación (10-25h/semana)</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="dedicacion" value="full">
+                  <span>Full time (más de 25h/semana)</span>
+                </label>
+              </div>
+            </div>
+            
+            <div class="field">
+              <label class="field__label">¿Tienes capacidad de inversión inicial?</label>
+              <p class="field__hint">No es requisito, pero ayuda saber</p>
+              <div class="radio-options">
+                <label class="radio-item">
+                  <input type="radio" name="inversion" value="ninguna">
+                  <span>No, solo tiempo y trabajo</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="inversion" value="algo">
+                  <span>Algo (menos de 10K)</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="inversion" value="moderada">
+                  <span>Moderada (10-50K)</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="inversion" value="significativa">
+                  <span>Significativa (más de 50K)</span>
+                </label>
+              </div>
+            </div>
+            
+            <label class="terms-check">
+              <input type="checkbox" name="entiendo" required>
+              <span>
+                Entiendo que esto no es comprar un proyecto, sino unirme a un equipo donde 
+                el creador y yo compartimos el riesgo y el éxito. Acepto los 
+                <a href="terminos.html" target="_blank">Términos y Condiciones</a> y la 
+                <a href="privacidad.html" target="_blank">Política de Privacidad</a>.
+              </span>
+            </label>
+            
+            <button type="submit" class="btn btn--primary chispa__submit">
+              Quiero ser la chispa
+            </button>
+            
+          </form>
+          
+          <div class="success-message" id="successMessage">
+            <div class="success-message__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+            </div>
+            <h3>¡Gracias por tu interés!</h3>
+            <p>Hemos recibido tu solicitud.</p>
+            <p>Si tu perfil encaja con algún proyecto, te contactaremos pronto.</p>
+          </div>
+          
+          <!-- Desafío post-formulario -->
+          <div class="challenge" id="challengeSection">
+            <div class="challenge__header">
+              <div class="challenge__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                  <line x1="12" y1="17" x2="12.01" y2="17"/>
+                </svg>
+              </div>
+              <h3 class="challenge__title">Una última cosa...</h3>
+              <p class="challenge__intro">Antes de terminar, un pequeño desafío. No hay respuesta correcta, solo queremos conocerte mejor.</p>
+            </div>
+            
+            <div class="challenge__question" id="challengeQuestion">
+              <!-- Se llena dinámicamente -->
+            </div>
+            
+            <form id="challengeForm">
+              <div class="field">
+                <textarea 
+                  class="field__textarea challenge__answer" 
+                  name="respuesta_desafio" 
+                  id="challengeAnswer"
+                  placeholder="Tu respuesta..."
+                  required
+                  minlength="20"
+                ></textarea>
+                <p class="field__hint">Mínimo 20 caracteres. Sé sincero/a.</p>
+              </div>
+              
+              <button type="submit" class="btn btn--primary chispa__submit">
+                Enviar respuesta
+              </button>
+              
+              <button type="button" class="btn btn--ghost challenge__skip" id="skipChallenge">
+                Prefiero no responder
+              </button>
+            </form>
+          </div>
+          
+          <!-- Mensaje final -->
+          <div class="final-message" id="finalMessage">
+            <div class="success-message__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+            </div>
+            <h3>¡Gracias!</h3>
+            <p>Revisamos cada respuesta personalmente.</p>
+            <p>Si hay encaje con algún proyecto, te contactaremos.</p>
+            <a href="index.html" class="btn btn--secondary" style="margin-top: var(--space-6);">Volver al inicio</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Disclaimer -->
+      <div class="disclaimer">
+        No todos los perfiles encajarán con los proyectos disponibles. 
+        Revisamos cada solicitud personalmente y solo contactamos cuando hay una oportunidad real.
+      </div>
+      
+    </div>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__logo">
+          <img src="assets/logo-mvp.png" alt="MVP Launches">
+          <span>mvplaunches</span>
+        </div>
+        <div class="footer__links">
+          <a href="index.html#que-es">Qué es</a>
+          <a href="index.html#proyectos">Proyectos</a>
+          <a href="manifiesto.html">Manifiesto</a>
+          <a href="terminos.html">Términos</a>
+          <a href="privacidad.html">Privacidad</a>
+        </div>
+      </div>
+      <p class="footer__copy">
+        © 2025 MVP Launches. Conectando proyectos con equipos.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script type="module">
+    import { db } from './js/firebase-config.js';
+    import { collection, addDoc, updateDoc, doc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    
+    // ========================================
+    // DESAFÍOS POR TIPO DE CHISPA
+    // ========================================
+    const challenges = {
+      comercial: {
+        question: "Tienes 30 segundos en un ascensor con el cliente perfecto. No puedes hablar de tu producto. ¿Qué le dices?",
+        context: "Buscamos: empatía, escucha, conexión humana",
+        keywords_positive: ["escuchar", "preguntar", "problema", "necesidad", "ayudar", "entender", "conocer", "interés", "conexión", "persona", "situación", "reto", "objetivo"],
+        keywords_negative: ["vender", "pitch", "presentar", "oferta", "descuento", "comprar", "producto", "servicio", "precio"],
+        ideal_length: [100, 400]
+      },
+      marketing: {
+        question: "Tu presupuesto de marketing es 0€ y tienes que conseguir 100 usuarios en 30 días. ¿Cuál es tu primer movimiento?",
+        context: "Buscamos: creatividad, resourcefulness, pensamiento lateral",
+        keywords_positive: ["comunidad", "contenido", "viral", "referidos", "boca", "redes", "colaborar", "alianza", "gratis", "valor", "historia", "problema", "grupo", "nicho", "manual", "uno a uno", "linkedin", "twitter", "reddit"],
+        keywords_negative: ["anuncios", "publicidad", "pagar", "ads", "campaña pagada", "influencer pago"],
+        ideal_length: [80, 350]
+      },
+      operaciones: {
+        question: "El proyecto va perfecto. Demasiado perfecto. ¿Qué podría estar yendo mal sin que lo sepas?",
+        context: "Buscamos: paranoia sana, anticipación, pensamiento sistémico",
+        keywords_positive: ["métricas", "datos", "cliente", "equipo", "comunicación", "feedback", "oculto", "sesgo", "dependencia", "riesgo", "punto ciego", "revisar", "validar", "preguntar", "mercado", "competencia", "burnout", "deuda"],
+        keywords_negative: ["nada", "todo bien", "no pasa nada", "confiar", "suerte"],
+        ideal_length: [100, 400]
+      },
+      financiero: {
+        question: "¿Qué preferirías: 10% de algo que vale 1M€, o 50% de algo que podría valer 10M€ pero probablemente valga 0?",
+        context: "Buscamos: relación con el riesgo, honestidad sobre preferencias",
+        keywords_positive: ["depende", "riesgo", "probabilidad", "situación", "patrimonio", "diversificar", "momento", "edad", "responsabilidades", "aprender", "experiencia", "equipo", "sector"],
+        keywords_negative: ["obvio", "fácil", "siempre", "nunca"],
+        ideal_length: [80, 350]
+      },
+      producto: {
+        question: "Tu usuario más fiel te dice que odia la nueva función que tú amas. ¿Qué haces primero?",
+        context: "Buscamos: ego vs. datos, capacidad de escucha",
+        keywords_positive: ["escuchar", "preguntar", "por qué", "entender", "datos", "más usuarios", "contexto", "uso", "feedback", "iterar", "probar", "hipótesis", "validar", "investigar"],
+        keywords_negative: ["ignorar", "explicar", "convencer", "defender", "razón", "equivocado"],
+        ideal_length: [80, 350]
+      },
+      sector: {
+        question: "¿Cuál es la creencia más extendida en tu sector que tú crees que es falsa?",
+        context: "Buscamos: pensamiento crítico, conocimiento profundo vs. superficial",
+        keywords_positive: ["porque", "experiencia", "datos", "realidad", "visto", "contrario", "diferente", "funciona", "no funciona", "mito", "creen", "verdad"],
+        keywords_negative: ["todos dicen", "siempre", "nunca", "obvio", "no sé"],
+        ideal_length: [100, 500]
+      }
+    };
+    
+    // Fallback para skills no mapeadas
+    const defaultChallenge = {
+      question: "Si pudieras cambiar una sola cosa del ecosistema emprendedor español, ¿cuál sería y por qué?",
+      context: "Buscamos: visión, criterio propio, capacidad de análisis",
+      keywords_positive: ["porque", "experiencia", "cambiaría", "mejorar", "problema", "solución", "impacto", "cultura", "educación", "financiación", "burocracia", "talento", "riesgo"],
+      keywords_negative: ["no sé", "todo", "nada", "perfecto"],
+      ideal_length: [100, 400]
+    };
+    
+    // ========================================
+    // SISTEMA DE SCORING AUTOMÁTICO
+    // ========================================
+    function calculateAutoScore(answer, challenge) {
+      let score = 5; // Empezamos en 5 (neutro)
+      const answerLower = answer.toLowerCase();
+      const words = answerLower.split(/\s+/);
+      
+      // 1. Longitud de respuesta (-2 a +2)
+      const [minLen, maxLen] = challenge.ideal_length;
+      if (answer.length < 20) {
+        score -= 2; // Muy corta
+      } else if (answer.length < minLen) {
+        score -= 1; // Corta
+      } else if (answer.length > maxLen * 1.5) {
+        score += 0; // Muy larga no suma ni resta
+      } else if (answer.length >= minLen && answer.length <= maxLen) {
+        score += 1; // Longitud ideal
+      }
+      
+      // 2. Keywords positivas (+0.5 por cada una, max +3)
+      let positiveHits = 0;
+      challenge.keywords_positive.forEach(kw => {
+        if (answerLower.includes(kw)) positiveHits++;
+      });
+      score += Math.min(positiveHits * 0.5, 3);
+      
+      // 3. Keywords negativas (-0.5 por cada una, max -2)
+      let negativeHits = 0;
+      challenge.keywords_negative.forEach(kw => {
+        if (answerLower.includes(kw)) negativeHits++;
+      });
+      score -= Math.min(negativeHits * 0.5, 2);
+      
+      // 4. Signos de reflexión (+1)
+      const reflectionMarkers = ["porque", "por qué", "creo que", "en mi experiencia", "depende", "por un lado", "sin embargo", "aunque", "quizá", "probablemente"];
+      const hasReflection = reflectionMarkers.some(marker => answerLower.includes(marker));
+      if (hasReflection) score += 1;
+      
+      // 5. Pregunta en la respuesta (+0.5) - muestra curiosidad
+      if (answer.includes("?")) score += 0.5;
+      
+      // 6. Respuesta genérica o evasiva (-2)
+      const genericResponses = ["no sé", "no lo sé", "difícil decir", "depende de muchas cosas", "es complicado"];
+      const isGeneric = genericResponses.some(gr => answerLower.includes(gr) && answer.length < 100);
+      if (isGeneric) score -= 2;
+      
+      // 7. Uso de primera persona y ejemplos concretos (+1)
+      const personalMarkers = ["yo ", "mi ", "he ", "hice", "aprendí", "viví", "trabajé", "cuando "];
+      const hasPersonal = personalMarkers.some(marker => answerLower.includes(marker));
+      if (hasPersonal) score += 1;
+      
+      // Normalizar entre 0 y 10
+      score = Math.max(0, Math.min(10, score));
+      
+      // Redondear a 1 decimal
+      return Math.round(score * 10) / 10;
+    }
+    
+    // ========================================
+    // VARIABLES GLOBALES
+    // ========================================
+    let currentDocId = null;
+    let selectedChallenge = null;
+    let primarySkill = null;
+    
+    // ========================================
+    // UI INTERACTIONS
+    // ========================================
+    
+    // Checkbox/radio visual feedback
+    document.querySelectorAll('.spark-item input, .radio-item input').forEach(input => {
+      input.addEventListener('change', () => {
+        if (input.type === 'checkbox') {
+          input.closest('.spark-item').classList.toggle('selected', input.checked);
+        } else {
+          const name = input.name;
+          document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
+            r.closest('.radio-item').classList.remove('selected');
+          });
+          input.closest('.radio-item').classList.add('selected');
+        }
+      });
+    });
+    
+    // ========================================
+    // FORM SUBMISSION - PASO 1
+    // ========================================
+    const form = document.getElementById('chispaForm');
+    const challengeSection = document.getElementById('challengeSection');
+    const challengeQuestion = document.getElementById('challengeQuestion');
+    const finalMessage = document.getElementById('finalMessage');
+    
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+      
+      // Get all checked spark types
+      const sparkTypes = [...form.querySelectorAll('input[name="tipo_chispa"]:checked')].map(i => i.value);
+      data.tipo_chispa = sparkTypes;
+      
+      // Determinar skill principal (primera seleccionada)
+      primarySkill = sparkTypes[0] || 'default';
+      
+      const submitBtn = form.querySelector('button[type="submit"]');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enviando...';
+      
+      try {
+        // Guardar en Firebase
+        const docRef = await addDoc(collection(db, "chispas"), {
+          ...data,
+          skill_principal: primarySkill,
+          created_at: serverTimestamp(),
+          status: 'pending_challenge',
+          score_auto: null,
+          score_humano: null,
+          score_final: null
+        });
+        
+        currentDocId = docRef.id;
+        
+        // Seleccionar desafío según skill
+        selectedChallenge = challenges[primarySkill] || defaultChallenge;
+        
+        // Mostrar desafío
+        challengeQuestion.innerHTML = `
+          <p>${selectedChallenge.question}</p>
+          <p class="challenge__context">${selectedChallenge.context}</p>
+        `;
+        
+        form.style.display = 'none';
+        challengeSection.classList.add('visible');
+        
+        // Scroll al desafío
+        challengeSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Hubo un error. Por favor, inténtalo de nuevo.');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Quiero ser la chispa';
+      }
+    });
+    
+    // ========================================
+    // CHALLENGE SUBMISSION - PASO 2
+    // ========================================
+    const challengeForm = document.getElementById('challengeForm');
+    const skipButton = document.getElementById('skipChallenge');
+    
+    challengeForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const answer = document.getElementById('challengeAnswer').value;
+      const submitBtn = challengeForm.querySelector('button[type="submit"]');
+      
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Calculando...';
+      
+      try {
+        // Calcular score automático
+        const autoScore = calculateAutoScore(answer, selectedChallenge);
+        
+        // Actualizar documento en Firebase
+        await updateDoc(doc(db, "chispas", currentDocId), {
+          respuesta_desafio: answer,
+          desafio_pregunta: selectedChallenge.question,
+          desafio_skill: primarySkill,
+          score_auto: autoScore,
+          status: 'pending_review',
+          challenge_completed_at: serverTimestamp()
+        });
+        
+        // Si score > 6, crear documento para enviar email de notificación
+        // Requiere Firebase Extension "Trigger Email from Firestore"
+        if (autoScore > 6) {
+          const formData = new FormData(form);
+          const nombre = formData.get('nombre') || '';
+          const apellidos = formData.get('apellidos') || '';
+          const linkedin = formData.get('linkedin') || '';
+          const email = formData.get('email') || '';
+          
+          try {
+            await addDoc(collection(db, "mail"), {
+              to: "felipe@fgq98.com",
+              message: {
+                subject: `🔥 Nueva chispa prometedora: ${nombre} ${apellidos} (${autoScore}/10)`,
+                html: `
+                  <h2>Candidato con alto potencial</h2>
+                  <p><strong>Nombre:</strong> ${nombre} ${apellidos}</p>
+                  <p><strong>Email:</strong> ${email}</p>
+                  <p><strong>Skill principal:</strong> ${primarySkill}</p>
+                  <p><strong>Score automático:</strong> ${autoScore}/10</p>
+                  <p><strong>LinkedIn:</strong> <a href="${linkedin}">${linkedin}</a></p>
+                  <hr>
+                  <p><strong>Desafío:</strong> ${selectedChallenge.question}</p>
+                  <p><strong>Respuesta:</strong></p>
+                  <blockquote style="background:#f5f5f5;padding:15px;border-left:4px solid #ff6b35;">${answer}</blockquote>
+                  <hr>
+                  <p>→ <a href="https://mvp-launches.vercel.app/admin.html">Revisar en Admin Panel</a></p>
+                  <p><em>Recuerda: haz tu scoring sin ver la nota del automático para evitar sesgo.</em></p>
+                `
+              }
+            });
+          } catch (emailError) {
+            console.log('Email notification skipped (extension may not be configured)');
+          }
+        }
+        
+        // Mostrar mensaje final
+        challengeSection.classList.remove('visible');
+        finalMessage.classList.add('visible');
+        
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Hubo un error. Por favor, inténtalo de nuevo.');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Enviar respuesta';
+      }
+    });
+    
+    // Skip challenge
+    skipButton.addEventListener('click', async () => {
+      try {
+        await updateDoc(doc(db, "chispas", currentDocId), {
+          respuesta_desafio: '[SKIPPED]',
+          desafio_skill: primarySkill,
+          score_auto: 0,
+          status: 'skipped_challenge',
+          challenge_completed_at: serverTimestamp()
+        });
+        
+        challengeSection.classList.remove('visible');
+        finalMessage.classList.add('visible');
+        
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    });
+    
+    // ========================================
+    // HEADER BEHAVIORS
+    // ========================================
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 50);
+    });
+    
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      mobileNav.classList.toggle('active');
+    });
+  </script>
+
+</body>
+</html>

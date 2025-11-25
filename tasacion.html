@@ -1,0 +1,1548 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Valora tu MVP gratis. Herramienta de tasación objetiva basada en criterios transparentes y análisis de un comité de expertos.">
+  
+  <title>Tasación MVP Gratuita | MVP Launches</title>
+  
+  <link rel="icon" type="image/png" href="assets/logo-mvp.png">
+  
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/home.css">
+  
+  <style>
+    .tasacion {
+      padding-top: calc(72px + var(--space-12));
+      padding-bottom: var(--space-16);
+      min-height: 100vh;
+    }
+    
+    .tasacion__header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto var(--space-12);
+    }
+    
+    .tasacion__badge {
+      display: inline-block;
+      padding: var(--space-2) var(--space-4);
+      background-color: var(--color-accent-light);
+      color: var(--color-accent);
+      font-size: var(--text-sm);
+      font-weight: var(--font-medium);
+      border-radius: var(--radius-full);
+      margin-bottom: var(--space-4);
+    }
+    
+    .tasacion__title {
+      font-size: var(--text-4xl);
+      margin-bottom: var(--space-4);
+    }
+    
+    .tasacion__subtitle {
+      font-size: var(--text-lg);
+      color: var(--color-gray-500);
+      line-height: 1.6;
+    }
+    
+    /* Progress bar */
+    .progress {
+      max-width: 800px;
+      margin: 0 auto var(--space-10);
+    }
+    
+    .progress__bar {
+      height: 8px;
+      background-color: var(--color-gray-100);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+    }
+    
+    .progress__fill {
+      height: 100%;
+      background-color: var(--color-accent);
+      border-radius: var(--radius-full);
+      transition: width 0.3s ease;
+      width: 0%;
+    }
+    
+    .progress__text {
+      display: flex;
+      justify-content: space-between;
+      margin-top: var(--space-2);
+      font-size: var(--text-sm);
+      color: var(--color-gray-500);
+    }
+    
+    /* Form container */
+    .tasacion__form {
+      max-width: 800px;
+      margin: 0 auto;
+      background: var(--color-white);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+    
+    /* Sections */
+    .form-section {
+      padding: var(--space-10);
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+    
+    .form-section.active {
+      display: block;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .form-section__header {
+      margin-bottom: var(--space-8);
+    }
+    
+    .form-section__number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background-color: var(--color-accent);
+      color: white;
+      font-weight: var(--font-bold);
+      border-radius: var(--radius-full);
+      margin-bottom: var(--space-3);
+    }
+    
+    .form-section__title {
+      font-size: var(--text-2xl);
+      margin-bottom: var(--space-2);
+    }
+    
+    .form-section__desc {
+      color: var(--color-gray-500);
+    }
+    
+    /* Form fields */
+    .field {
+      margin-bottom: var(--space-6);
+    }
+    
+    .field__label {
+      display: block;
+      font-weight: var(--font-medium);
+      margin-bottom: var(--space-2);
+      color: var(--color-gray-700);
+    }
+    
+    .field__hint {
+      font-size: var(--text-sm);
+      color: var(--color-gray-400);
+      margin-bottom: var(--space-2);
+    }
+    
+    .field__input,
+    .field__textarea,
+    .field__select {
+      width: 100%;
+      padding: var(--space-4);
+      font-family: var(--font-primary);
+      font-size: var(--text-base);
+      border: 2px solid var(--color-gray-100);
+      border-radius: var(--radius-md);
+      transition: border-color var(--transition-fast);
+    }
+    
+    .field__input:focus,
+    .field__textarea:focus,
+    .field__select:focus {
+      outline: none;
+      border-color: var(--color-accent);
+    }
+    
+    .field__textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+    
+    /* Checkbox grid */
+    .checkbox-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: var(--space-3);
+    }
+    
+    .checkbox-item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+      padding: var(--space-4);
+      border: 2px solid var(--color-gray-100);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    
+    .checkbox-item:hover {
+      border-color: var(--color-gray-200);
+      background-color: var(--color-gray-50);
+    }
+    
+    .checkbox-item.selected {
+      border-color: var(--color-accent);
+      background-color: var(--color-accent-light);
+    }
+    
+    .checkbox-item input {
+      width: 20px;
+      height: 20px;
+      accent-color: var(--color-accent);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    
+    .checkbox-item span {
+      font-size: var(--text-sm);
+      line-height: 1.4;
+    }
+    
+    /* Radio options */
+    .radio-options {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    
+    .radio-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-4);
+      border: 2px solid var(--color-gray-100);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    
+    .radio-item:hover {
+      border-color: var(--color-gray-200);
+    }
+    
+    .radio-item.selected {
+      border-color: var(--color-accent);
+      background-color: var(--color-accent-light);
+    }
+    
+    .radio-item input {
+      width: 20px;
+      height: 20px;
+      accent-color: var(--color-accent);
+    }
+    
+    /* Navigation buttons */
+    .form-nav {
+      display: flex;
+      justify-content: space-between;
+      padding: var(--space-6) var(--space-10);
+      border-top: 1px solid var(--color-gray-100);
+      background-color: var(--color-gray-50);
+    }
+    
+    .form-nav__btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-3) var(--space-6);
+      font-family: var(--font-primary);
+      font-size: var(--text-base);
+      font-weight: var(--font-medium);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    
+    .form-nav__btn--prev {
+      background: transparent;
+      border: 2px solid var(--color-gray-200);
+      color: var(--color-gray-600);
+    }
+    
+    .form-nav__btn--prev:hover {
+      border-color: var(--color-gray-300);
+      background-color: var(--color-white);
+    }
+    
+    .form-nav__btn--next {
+      background-color: var(--color-accent);
+      border: 2px solid var(--color-accent);
+      color: white;
+    }
+    
+    .form-nav__btn--next:hover {
+      background-color: var(--color-accent-dark);
+      border-color: var(--color-accent-dark);
+    }
+    
+    .form-nav__btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    
+    /* Results section */
+    .results {
+      padding: var(--space-12) var(--space-10);
+      text-align: center;
+      display: none;
+    }
+    
+    .results.active {
+      display: block;
+    }
+    
+    .results__icon {
+      width: 80px;
+      height: 80px;
+      background-color: var(--color-accent-light);
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto var(--space-6);
+    }
+    
+    .results__icon svg {
+      width: 40px;
+      height: 40px;
+      color: var(--color-accent);
+    }
+    
+    .results__title {
+      font-size: var(--text-2xl);
+      margin-bottom: var(--space-2);
+    }
+    
+    .results__subtitle {
+      color: var(--color-gray-500);
+      margin-bottom: var(--space-8);
+    }
+    
+    .results__value {
+      background: linear-gradient(135deg, var(--color-accent-light) 0%, #e0f7f5 100%);
+      border-radius: var(--radius-xl);
+      padding: var(--space-8);
+      margin-bottom: var(--space-8);
+    }
+    
+    .results__label {
+      font-size: var(--text-sm);
+      color: var(--color-gray-500);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-2);
+    }
+    
+    .results__range {
+      font-family: var(--font-display);
+      font-size: var(--text-4xl);
+      font-weight: var(--font-bold);
+      color: var(--color-accent);
+    }
+    
+    .results__breakdown {
+      text-align: left;
+      background-color: var(--color-gray-50);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+      margin-bottom: var(--space-8);
+    }
+    
+    .results__breakdown h4 {
+      font-size: var(--text-base);
+      margin-bottom: var(--space-4);
+    }
+    
+    .results__breakdown-item {
+      display: flex;
+      justify-content: space-between;
+      padding: var(--space-2) 0;
+      border-bottom: 1px solid var(--color-gray-100);
+    }
+    
+    .results__breakdown-item:last-child {
+      border-bottom: none;
+      font-weight: var(--font-semibold);
+      padding-top: var(--space-3);
+      margin-top: var(--space-2);
+      border-top: 2px solid var(--color-gray-200);
+    }
+    
+    .results__cta {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      align-items: center;
+    }
+    
+    .results__cta p {
+      color: var(--color-gray-500);
+      font-size: var(--text-sm);
+    }
+    
+    /* Disclaimer */
+    .disclaimer {
+      max-width: 800px;
+      margin: var(--space-10) auto 0;
+      padding: var(--space-6);
+      background-color: var(--color-gray-50);
+      border-radius: var(--radius-lg);
+      font-size: var(--text-sm);
+      color: var(--color-gray-500);
+      line-height: 1.7;
+    }
+    
+    .disclaimer strong {
+      color: var(--color-gray-700);
+    }
+    
+    /* Comité section */
+    .comite-info {
+      max-width: 800px;
+      margin: var(--space-16) auto 0;
+      text-align: center;
+    }
+    
+    .comite-info__title {
+      font-size: var(--text-2xl);
+      margin-bottom: var(--space-4);
+    }
+    
+    .comite-info__desc {
+      color: var(--color-gray-500);
+      margin-bottom: var(--space-8);
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .comite-info__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: var(--space-4);
+      margin-bottom: var(--space-8);
+    }
+    
+    .comite-info__item {
+      padding: var(--space-5);
+      background-color: var(--color-white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .comite-info__icon {
+      width: 48px;
+      height: 48px;
+      background-color: var(--color-accent-light);
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto var(--space-3);
+    }
+    
+    .comite-info__icon svg {
+      width: 24px;
+      height: 24px;
+      color: var(--color-accent);
+    }
+    
+    .comite-info__label {
+      font-size: var(--text-sm);
+      font-weight: var(--font-medium);
+      color: var(--color-gray-700);
+    }
+    
+    .comite-info__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-2) var(--space-4);
+      background-color: var(--color-accent-light);
+      color: var(--color-accent);
+      font-size: var(--text-sm);
+      font-weight: var(--font-medium);
+      border-radius: var(--radius-full);
+    }
+    
+    @media (max-width: 768px) {
+      .tasacion__title {
+        font-size: var(--text-3xl);
+      }
+      
+      .form-section {
+        padding: var(--space-6);
+      }
+      
+      .form-nav {
+        padding: var(--space-4) var(--space-6);
+      }
+      
+      .checkbox-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .results__range {
+        font-size: var(--text-3xl);
+      }
+      
+      .comite-info__grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Watermark -->
+  <div class="page-watermark">
+    <img src="assets/logo-mvp.png" alt="">
+  </div>
+
+  <!-- ============ HEADER ============ -->
+  <header class="header" id="header">
+    <div class="container">
+      <div class="header__inner">
+        <a href="index.html" class="header__logo">
+          <img src="assets/logo-mvp.png" alt="MVP Launches">
+          <span class="header__logo-text">mvp<span>launches</span></span>
+        </a>
+        
+        <nav class="header__nav header__nav--desktop">
+          <a href="index.html#que-es">Qué es</a>
+          <a href="index.html#proyectos">Proyectos</a>
+          <a href="manifiesto.html">Manifiesto</a>
+          <div class="header__lang">
+            <button class="header__lang-btn active" data-lang="es">ES</button>
+            <span class="header__lang-sep">|</span>
+            <button class="header__lang-btn" data-lang="en">EN</button>
+          </div>
+          <a href="login.html" class="btn btn--secondary btn--small">Acceder</a>
+          <a href="registro.html" class="btn btn--primary btn--small">Registro</a>
+        </nav>
+        
+        <button class="header__hamburger" id="menuToggle" aria-label="Abrir menú">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+    
+    <nav class="header__nav header__nav--mobile" id="mobileNav">
+      <a href="index.html#que-es">Qué es</a>
+      <a href="index.html#proyectos">Proyectos</a>
+      <a href="manifiesto.html">Manifiesto</a>
+      <div class="header__lang">
+        <button class="header__lang-btn active" data-lang="es">ES</button>
+        <span class="header__lang-sep">|</span>
+        <button class="header__lang-btn" data-lang="en">EN</button>
+      </div>
+      <div class="header__mobile-buttons">
+        <a href="login.html" class="btn btn--secondary">Acceder</a>
+        <a href="registro.html" class="btn btn--primary">Registro</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="tasacion">
+    <div class="container">
+      
+      <!-- Header -->
+      <div class="tasacion__header">
+        <span class="tasacion__badge">Herramienta gratuita</span>
+        <h1 class="tasacion__title">¿Cuánto vale tu MVP?</h1>
+        <p class="tasacion__subtitle">
+          Responde unas preguntas sencillas y obtén una valoración objetiva basada en 
+          criterios transparentes. No necesitas conocimientos técnicos.
+        </p>
+      </div>
+      
+      <!-- Progress -->
+      <div class="progress">
+        <div class="progress__bar">
+          <div class="progress__fill" id="progressFill"></div>
+        </div>
+        <div class="progress__text">
+          <span id="progressStep">Paso 1 de 5</span>
+          <span id="progressPercent">0%</span>
+        </div>
+      </div>
+      
+      <!-- Form -->
+      <div class="tasacion__form">
+        <form id="tasacionForm">
+          
+          <!-- SECTION 1: Tu proyecto -->
+          <div class="form-section active" data-section="1">
+            <div class="form-section__header">
+              <span class="form-section__number">1</span>
+              <h2 class="form-section__title">Tu proyecto</h2>
+              <p class="form-section__desc">Cuéntanos lo básico sobre lo que has creado.</p>
+            </div>
+            
+            <div class="field">
+              <label class="field__label">Nombre del proyecto *</label>
+              <input type="text" class="field__input" name="nombre_proyecto" required>
+            </div>
+            
+            <div class="field">
+              <label class="field__label">URL (si existe)</label>
+              <input type="url" class="field__input" name="url_proyecto" placeholder="https://...">
+            </div>
+            
+            <div class="field">
+              <label class="field__label">En 2-3 frases, ¿qué hace tu producto? *</label>
+              <p class="field__hint">Ejemplo: "Una app que conecta a dueños de perros con paseadores de su barrio."</p>
+              <textarea class="field__textarea" name="descripcion" required></textarea>
+            </div>
+            
+            <div class="field">
+              <label class="field__label">¿Qué problema resuelve o qué oportunidad aprovecha? *</label>
+              <textarea class="field__textarea" name="problema" required></textarea>
+            </div>
+          </div>
+          
+          <!-- SECTION 2: Tipo de producto -->
+          <div class="form-section" data-section="2">
+            <div class="form-section__header">
+              <span class="form-section__number">2</span>
+              <h2 class="form-section__title">¿Qué has construido?</h2>
+              <p class="form-section__desc">Marca todas las opciones que apliquen a tu producto.</p>
+            </div>
+            
+            <div class="field">
+              <label class="field__label">Formato del producto *</label>
+              <div class="checkbox-grid">
+                <label class="checkbox-item">
+                  <input type="checkbox" name="formato" value="web_responsive">
+                  <span>Página web que se ve bien en móvil y ordenador</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="formato" value="app_ios">
+                  <span>Aplicación móvil para iPhone</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="formato" value="app_android">
+                  <span>Aplicación móvil para Android</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="formato" value="desktop">
+                  <span>Programa de escritorio (Windows/Mac)</span>
+                </label>
+              </div>
+            </div>
+            
+            <div class="field">
+              <label class="field__label">Tipos de usuario diferentes</label>
+              <div class="radio-options">
+                <label class="radio-item">
+                  <input type="radio" name="tipos_usuario" value="1">
+                  <span>Solo uno (cualquier visitante hace lo mismo)</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="tipos_usuario" value="2">
+                  <span>Dos tipos (ej: compradores y vendedores)</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="tipos_usuario" value="3">
+                  <span>Tres tipos (ej: clientes, proveedores, admin)</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="tipos_usuario" value="4">
+                  <span>Más de tres tipos</span>
+                </label>
+              </div>
+            </div>
+            
+            <div class="field">
+              <label class="field__label">Funcionalidades básicas</label>
+              <div class="checkbox-grid">
+                <label class="checkbox-item">
+                  <input type="checkbox" name="func_basicas" value="registro">
+                  <span>Registro y creación de cuenta</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="func_basicas" value="login">
+                  <span>Inicio de sesión</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="func_basicas" value="password">
+                  <span>Recuperar contraseña</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="func_basicas" value="perfil">
+                  <span>Editar perfil de usuario</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="func_basicas" value="admin">
+                  <span>Panel de administración</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="func_basicas" value="emails">
+                  <span>Emails automáticos</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="func_basicas" value="notificaciones">
+                  <span>Notificaciones en la app</span>
+                </label>
+              </div>
+            </div>
+            
+            <div class="field">
+              <label class="field__label">Funcionalidades de interacción</label>
+              <div class="checkbox-grid">
+                <label class="checkbox-item">
+                  <input type="checkbox" name="func_interaccion" value="mensajes">
+                  <span>Mensajes o chat entre usuarios</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="func_interaccion" value="valoraciones">
+                  <span>Valoraciones o reseñas</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="func_interaccion" value="favoritos">
+                  <span>Favoritos o guardados</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="func_interaccion" value="calendario">
+                  <span>Calendario o reservas</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="func_interaccion" value="compra">
+                  <span>Proceso de compra</span>
+                </label>
+              </div>
+            </div>
+            
+            <div class="field">
+              <label class="field__label">Funcionalidades de pago</label>
+              <div class="checkbox-grid">
+                <label class="checkbox-item">
+                  <input type="checkbox" name="func_pago" value="ninguno">
+                  <span>No hay pagos (gratuito)</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="func_pago" value="tarjeta">
+                  <span>Pagos con tarjeta</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="func_pago" value="suscripcion">
+                  <span>Suscripciones recurrentes</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="func_pago" value="comisiones">
+                  <span>Comisiones entre usuarios</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="func_pago" value="facturacion">
+                  <span>Facturación automática</span>
+                </label>
+              </div>
+            </div>
+            
+            <div class="field">
+              <label class="field__label">Funcionalidades avanzadas</label>
+              <div class="checkbox-grid">
+                <label class="checkbox-item">
+                  <input type="checkbox" name="func_avanzadas" value="graficos">
+                  <span>Gráficos y estadísticas</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="func_avanzadas" value="exportar">
+                  <span>Exportar datos (Excel, PDF)</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="func_avanzadas" value="ia">
+                  <span>Inteligencia artificial</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="func_avanzadas" value="integraciones">
+                  <span>Integraciones externas (APIs)</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="func_avanzadas" value="mapas">
+                  <span>Mapas o geolocalización</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="func_avanzadas" value="automatizaciones">
+                  <span>Procesos automáticos</span>
+                </label>
+                <label class="checkbox-item">
+                  <input type="checkbox" name="func_avanzadas" value="idiomas">
+                  <span>Múltiples idiomas</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          
+          <!-- SECTION 3: Desarrollo -->
+          <div class="form-section" data-section="3">
+            <div class="form-section__header">
+              <span class="form-section__number">3</span>
+              <h2 class="form-section__title">¿Cómo se construyó?</h2>
+              <p class="form-section__desc">Información sobre el desarrollo de tu producto.</p>
+            </div>
+            
+            <div class="field">
+              <label class="field__label">¿Cuánto tiempo llevó construirlo? *</label>
+              <div class="radio-options">
+                <label class="radio-item">
+                  <input type="radio" name="tiempo_desarrollo" value="1" required>
+                  <span>Menos de 2 meses</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="tiempo_desarrollo" value="2">
+                  <span>2-4 meses</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="tiempo_desarrollo" value="3">
+                  <span>4-6 meses</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="tiempo_desarrollo" value="4">
+                  <span>6-12 meses</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="tiempo_desarrollo" value="5">
+                  <span>Más de 12 meses</span>
+                </label>
+              </div>
+            </div>
+            
+            <div class="field">
+              <label class="field__label">¿Quién lo desarrolló?</label>
+              <div class="radio-options">
+                <label class="radio-item">
+                  <input type="radio" name="quien_desarrollo" value="yo_nocode">
+                  <span>Yo mismo con herramientas sin código (Webflow, Bubble, etc.)</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="quien_desarrollo" value="yo_codigo">
+                  <span>Yo mismo programando</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="quien_desarrollo" value="freelance">
+                  <span>Un freelance o autónomo</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="quien_desarrollo" value="agencia">
+                  <span>Una agencia o empresa</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="quien_desarrollo" value="equipo">
+                  <span>Un equipo interno</span>
+                </label>
+              </div>
+            </div>
+            
+            <div class="field">
+              <label class="field__label">¿Tienes acceso completo al código o plataforma?</label>
+              <div class="radio-options">
+                <label class="radio-item">
+                  <input type="radio" name="acceso_codigo" value="total">
+                  <span>Sí, control total</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="acceso_codigo" value="parcial">
+                  <span>Acceso pero dependo de tercero para cambios</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="acceso_codigo" value="ninguno">
+                  <span>No tengo acceso, lo gestiona otro</span>
+                </label>
+              </div>
+            </div>
+            
+            <div class="field">
+              <label class="field__label">¿Existe documentación de cómo funciona?</label>
+              <div class="radio-options">
+                <label class="radio-item">
+                  <input type="radio" name="documentacion" value="completa">
+                  <span>Sí, documentación completa</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="documentacion" value="parcial">
+                  <span>Documentación parcial</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="documentacion" value="ninguna">
+                  <span>Solo lo que está en mi cabeza</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          
+          <!-- SECTION 4: Tracción -->
+          <div class="form-section" data-section="4">
+            <div class="form-section__header">
+              <span class="form-section__number">4</span>
+              <h2 class="form-section__title">Tracción y validación</h2>
+              <p class="form-section__desc">¿Tu producto ya tiene usuarios o ingresos?</p>
+            </div>
+            
+            <div class="field">
+              <label class="field__label">¿El producto está publicado?</label>
+              <div class="radio-options">
+                <label class="radio-item">
+                  <input type="radio" name="publicado" value="si">
+                  <span>Sí, cualquiera puede usarlo</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="publicado" value="invitacion">
+                  <span>Sí, pero solo por invitación</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="publicado" value="no">
+                  <span>No, está en desarrollo</span>
+                </label>
+              </div>
+            </div>
+            
+            <div class="field">
+              <label class="field__label">¿Cuántos usuarios registrados tienes?</label>
+              <div class="radio-options">
+                <label class="radio-item">
+                  <input type="radio" name="usuarios_registrados" value="0">
+                  <span>Ninguno todavía</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="usuarios_registrados" value="50">
+                  <span>1-50 usuarios</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="usuarios_registrados" value="200">
+                  <span>51-200 usuarios</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="usuarios_registrados" value="1000">
+                  <span>201-1.000 usuarios</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="usuarios_registrados" value="1001">
+                  <span>Más de 1.000 usuarios</span>
+                </label>
+              </div>
+            </div>
+            
+            <div class="field">
+              <label class="field__label">¿El producto genera ingresos?</label>
+              <div class="radio-options">
+                <label class="radio-item">
+                  <input type="radio" name="ingresos" value="no">
+                  <span>No, es gratuito o no monetiza aún</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="ingresos" value="esporadicos">
+                  <span>Sí, ingresos esporádicos</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="ingresos" value="recurrentes">
+                  <span>Sí, ingresos recurrentes</span>
+                </label>
+              </div>
+            </div>
+            
+            <div class="field">
+              <label class="field__label">¿Tienes marca registrada?</label>
+              <div class="radio-options">
+                <label class="radio-item">
+                  <input type="radio" name="marca" value="no">
+                  <span>No</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="marca" value="proceso">
+                  <span>En proceso de registro</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="marca" value="espana">
+                  <span>Sí, registrada en España</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="marca" value="europa">
+                  <span>Sí, registrada en Europa</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          
+          <!-- SECTION 5: Conceptualización -->
+          <div class="form-section" data-section="5">
+            <div class="form-section__header">
+              <span class="form-section__number">5</span>
+              <h2 class="form-section__title">Tu trabajo previo</h2>
+              <p class="form-section__desc">El esfuerzo de pensar, diseñar y planificar también tiene valor.</p>
+            </div>
+            
+            <div class="field">
+              <label class="field__label">¿Cuánto tiempo dedicaste a diseñar el producto ANTES de construirlo?</label>
+              <div class="radio-options">
+                <label class="radio-item">
+                  <input type="radio" name="tiempo_conceptualizacion" value="1">
+                  <span>Menos de 1 semana</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="tiempo_conceptualizacion" value="2">
+                  <span>1-4 semanas</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="tiempo_conceptualizacion" value="3">
+                  <span>1-3 meses</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="tiempo_conceptualizacion" value="4">
+                  <span>Más de 3 meses</span>
+                </label>
+              </div>
+            </div>
+            
+            <div class="field">
+              <label class="field__label">¿De dónde surgió la idea?</label>
+              <div class="radio-options">
+                <label class="radio-item">
+                  <input type="radio" name="origen_idea" value="copia">
+                  <span>Inspirado en algo que ya existe</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="origen_idea" value="personal">
+                  <span>Experiencia personal (problema propio)</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="origen_idea" value="profesional">
+                  <span>Experiencia profesional en el sector</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="origen_idea" value="investigacion">
+                  <span>Investigación de mercado</span>
+                </label>
+              </div>
+            </div>
+            
+            <div class="field">
+              <label class="field__label">¿Tienes claro cómo ganaría dinero?</label>
+              <div class="radio-options">
+                <label class="radio-item">
+                  <input type="radio" name="modelo_negocio" value="no">
+                  <span>No lo tengo claro</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="modelo_negocio" value="ideas">
+                  <span>Tengo varias ideas pero no he decidido</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="modelo_negocio" value="definido">
+                  <span>Modelo definido pero no probado</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="modelo_negocio" value="validado">
+                  <span>Modelo definido y ya genera ingresos</span>
+                </label>
+              </div>
+            </div>
+            
+            <div class="field">
+              <label class="field__label">¿Has investigado a tu competencia?</label>
+              <div class="radio-options">
+                <label class="radio-item">
+                  <input type="radio" name="competencia" value="no">
+                  <span>No he investigado</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="competencia" value="superficial">
+                  <span>Superficialmente</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="competencia" value="conocido">
+                  <span>Conozco a los principales competidores</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="competencia" value="documentado">
+                  <span>Tengo análisis documentado</span>
+                </label>
+              </div>
+            </div>
+            
+            <div class="field">
+              <label class="field__label">¿Quieres contarnos algo más? (opcional)</label>
+              <p class="field__hint">Si hay algo relevante que no hayamos preguntado, cuéntanoslo aquí. Recuerda: no incluyas información sensible como código, credenciales o datos confidenciales.</p>
+              <textarea class="field__textarea" name="comentarios_adicionales" placeholder="Cualquier contexto adicional que consideres importante..."></textarea>
+            </div>
+            
+            <div class="field">
+              <label class="field__label">Tu email para recibir el informe *</label>
+              <input type="email" class="field__input" name="email" required placeholder="tu@email.com">
+            </div>
+            
+            <div class="field">
+              <label class="checkbox-item" style="display: inline-flex;">
+                <input type="checkbox" name="acepta_terminos" required>
+                <span>Acepto los <a href="terminos.html" target="_blank">Términos y Condiciones</a> y la <a href="privacidad.html" target="_blank">Política de Privacidad</a></span>
+              </label>
+            </div>
+          </div>
+          
+        </form>
+        
+        <!-- Navigation -->
+        <div class="form-nav">
+          <button type="button" class="form-nav__btn form-nav__btn--prev" id="btnPrev" disabled>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            Anterior
+          </button>
+          <button type="button" class="form-nav__btn form-nav__btn--next" id="btnNext">
+            Siguiente
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </button>
+        </div>
+        
+        <!-- Results -->
+        <div class="results" id="results">
+          <div class="results__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+          </div>
+          <h2 class="results__title">¡Valoración completada!</h2>
+          <p class="results__subtitle">Basada en los criterios de MVP Launches</p>
+          
+          <div class="results__value">
+            <p class="results__label">Valoración estimada de tu MVP</p>
+            <p class="results__range" id="valoracionRange">35.000€ - 55.000€</p>
+          </div>
+          
+          <div class="results__breakdown">
+            <h4>Desglose</h4>
+            <div class="results__breakdown-item">
+              <span>Valor del desarrollo</span>
+              <span id="valorDesarrollo">40.000€</span>
+            </div>
+            <div class="results__breakdown-item">
+              <span>Conceptualización y dirección</span>
+              <span id="valorConceptualizacion">8.000€</span>
+            </div>
+            <div class="results__breakdown-item">
+              <span>Ajustes (tracción, docs...)</span>
+              <span id="valorAjustes">+2.000€</span>
+            </div>
+            <div class="results__breakdown-item">
+              <span><strong>Valor total estimado</strong></span>
+              <span id="valorTotal"><strong>50.000€</strong></span>
+            </div>
+          </div>
+          
+          <div class="results__cta">
+            <a href="#" class="btn btn--primary btn--large" id="btnInforme">
+              Solicitar informe del Comité de Expertos
+            </a>
+            <p>Análisis 360° con perspectivas de emprendedores, inversores, técnicos y diseñadores.</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Disclaimer -->
+      <div class="disclaimer">
+        <strong>Sobre esta valoración:</strong> Los datos de tu proyecto se utilizan para generar 
+        tu valoración personalizada y para mejorar nuestro sistema (información agregada, nunca individual). 
+        <strong>Nos comprometemos a no utilizar tu información para desarrollar proyectos propios o competidores.</strong>
+        Esta tasación refleja criterios propios de MVP Launches, fruto de la experiencia y el sentido común. 
+        Es una evaluación consistente según nuestra metodología, pero no constituye una tasación oficial. 
+        El valor real de un MVP lo determina, en última instancia, el mercado.
+      </div>
+      
+      <!-- Comité info -->
+      <div class="comite-info">
+        <h2 class="comite-info__title">Análisis 360°</h2>
+        <p class="comite-info__desc">
+          Tu proyecto es evaluado desde cuatro perspectivas complementarias, para que veas 
+          las oportunidades y riesgos desde todos los ángulos.
+        </p>
+        
+        <div class="comite-info__grid">
+          <div class="comite-info__item">
+            <div class="comite-info__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+            </div>
+            <p class="comite-info__label">Emprendedores</p>
+          </div>
+          <div class="comite-info__item">
+            <div class="comite-info__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="1" x2="12" y2="23"/>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+            </div>
+            <p class="comite-info__label">Inversores y analistas</p>
+          </div>
+          <div class="comite-info__item">
+            <div class="comite-info__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="16 18 22 12 16 6"/>
+                <polyline points="8 6 2 12 8 18"/>
+              </svg>
+            </div>
+            <p class="comite-info__label">Desarrolladores</p>
+          </div>
+          <div class="comite-info__item">
+            <div class="comite-info__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <p class="comite-info__label">Usuarios objetivo</p>
+          </div>
+        </div>
+        
+        <span class="comite-info__badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 16v-4"/>
+            <path d="M12 8h.01"/>
+          </svg>
+          Proceso asistido por IA
+        </span>
+      </div>
+      
+    </div>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__logo">
+          <img src="assets/logo-mvp.png" alt="MVP Launches">
+          <span>mvplaunches</span>
+        </div>
+        <div class="footer__links">
+          <a href="index.html#que-es">Qué es</a>
+          <a href="index.html#proyectos">Proyectos</a>
+          <a href="manifiesto.html">Manifiesto</a>
+          <a href="terminos.html">Términos</a>
+          <a href="privacidad.html">Privacidad</a>
+        </div>
+      </div>
+      <p class="footer__copy">
+        © 2025 MVP Launches. Conectando proyectos con equipos.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script type="module">
+    import { db } from './js/firebase-config.js';
+    import { collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    
+    // Form state
+    let currentSection = 1;
+    const totalSections = 5;
+    
+    // DOM elements
+    const form = document.getElementById('tasacionForm');
+    const sections = document.querySelectorAll('.form-section');
+    const btnPrev = document.getElementById('btnPrev');
+    const btnNext = document.getElementById('btnNext');
+    const progressFill = document.getElementById('progressFill');
+    const progressStep = document.getElementById('progressStep');
+    const progressPercent = document.getElementById('progressPercent');
+    const results = document.getElementById('results');
+    
+    // Checkbox/radio visual feedback
+    document.querySelectorAll('.checkbox-item input, .radio-item input').forEach(input => {
+      input.addEventListener('change', () => {
+        if (input.type === 'checkbox') {
+          input.closest('.checkbox-item').classList.toggle('selected', input.checked);
+        } else {
+          // Radio - clear others in group
+          const name = input.name;
+          document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
+            r.closest('.radio-item').classList.remove('selected');
+          });
+          input.closest('.radio-item').classList.add('selected');
+        }
+      });
+    });
+    
+    // Update progress
+    function updateProgress() {
+      const percent = ((currentSection - 1) / totalSections) * 100;
+      progressFill.style.width = `${percent}%`;
+      progressStep.textContent = `Paso ${currentSection} de ${totalSections}`;
+      progressPercent.textContent = `${Math.round(percent)}%`;
+    }
+    
+    // Show section
+    function showSection(num) {
+      sections.forEach(s => s.classList.remove('active'));
+      document.querySelector(`[data-section="${num}"]`).classList.add('active');
+      
+      btnPrev.disabled = num === 1;
+      
+      if (num === totalSections) {
+        btnNext.innerHTML = `
+          Calcular valoración
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+        `;
+      } else {
+        btnNext.innerHTML = `
+          Siguiente
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        `;
+      }
+      
+      updateProgress();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    
+    // Calculate valuation
+    function calculateValuation() {
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+      
+      // Get all checked values for multi-select
+      const getChecked = (name) => {
+        return [...form.querySelectorAll(`input[name="${name}"]:checked`)].map(i => i.value);
+      };
+      
+      // STEP 1: Calculate complexity points
+      let complexityPoints = 0;
+      
+      // Format
+      const formatos = getChecked('formato');
+      if (formatos.includes('app_ios')) complexityPoints += 2;
+      if (formatos.includes('app_android')) complexityPoints += 2;
+      if (formatos.includes('desktop')) complexityPoints += 2;
+      
+      // User types
+      const tiposUsuario = parseInt(data.tipos_usuario || 1);
+      complexityPoints += (tiposUsuario - 1);
+      
+      // Basic features
+      complexityPoints += getChecked('func_basicas').length * 0.5;
+      
+      // Interaction features
+      complexityPoints += getChecked('func_interaccion').length * 1;
+      
+      // Payment features
+      const pagos = getChecked('func_pago');
+      if (pagos.includes('tarjeta')) complexityPoints += 1;
+      if (pagos.includes('suscripcion')) complexityPoints += 2;
+      if (pagos.includes('comisiones')) complexityPoints += 3;
+      if (pagos.includes('facturacion')) complexityPoints += 1;
+      
+      // Advanced features
+      const avanzadas = getChecked('func_avanzadas');
+      if (avanzadas.includes('graficos')) complexityPoints += 1;
+      if (avanzadas.includes('exportar')) complexityPoints += 1;
+      if (avanzadas.includes('ia')) complexityPoints += 4;
+      if (avanzadas.includes('integraciones')) complexityPoints += 2;
+      if (avanzadas.includes('mapas')) complexityPoints += 1;
+      if (avanzadas.includes('automatizaciones')) complexityPoints += 2;
+      if (avanzadas.includes('idiomas')) complexityPoints += 1;
+      
+      // Determine complexity level
+      let complexity = 'basico';
+      if (complexityPoints >= 9) complexity = 'estandar';
+      if (complexityPoints >= 17) complexity = 'complejo';
+      if (complexityPoints >= 26) complexity = 'sofisticado';
+      
+      // STEP 2: Get time bracket
+      const tiempo = parseInt(data.tiempo_desarrollo || 1);
+      let tiempoBracket = '2m';
+      if (tiempo >= 2) tiempoBracket = '2-4m';
+      if (tiempo >= 3) tiempoBracket = '4-6m';
+      if (tiempo >= 4) tiempoBracket = '6-12m';
+      
+      // Value ranges table
+      const valueRanges = {
+        '2m': { basico: [8000, 15000], estandar: [15000, 30000], complejo: [30000, 60000], sofisticado: [60000, 120000] },
+        '2-4m': { basico: [10000, 20000], estandar: [20000, 45000], complejo: [50000, 90000], sofisticado: [90000, 180000] },
+        '4-6m': { basico: [15000, 25000], estandar: [35000, 60000], complejo: [70000, 120000], sofisticado: [120000, 220000] },
+        '6-12m': { basico: [20000, 30000], estandar: [45000, 80000], complejo: [90000, 150000], sofisticado: [150000, 300000] }
+      };
+      
+      const [minBase, maxBase] = valueRanges[tiempoBracket][complexity];
+      const baseValue = (minBase + maxBase) / 2;
+      
+      // STEP 3: Calculate adjustments
+      let adjustments = 0;
+      
+      // Traction adjustments
+      const usuarios = parseInt(data.usuarios_registrados || 0);
+      if (usuarios >= 200) adjustments += 0.10;
+      if (usuarios >= 1000) adjustments += 0.10;
+      
+      const ingresos = data.ingresos;
+      if (ingresos === 'esporadicos') adjustments += 0.05;
+      if (ingresos === 'recurrentes') adjustments += 0.15;
+      
+      // Tech adjustments
+      if (data.quien_desarrollo === 'yo_codigo' || data.quien_desarrollo === 'agencia') adjustments += 0.05;
+      if (avanzadas.includes('ia')) adjustments += 0.05;
+      
+      // Documentation adjustments
+      if (data.acceso_codigo === 'parcial') adjustments -= 0.10;
+      if (data.acceso_codigo === 'ninguno') adjustments -= 0.15;
+      if (data.documentacion === 'ninguna') adjustments -= 0.10;
+      
+      // Brand
+      if (data.marca === 'espana') adjustments += 0.03;
+      if (data.marca === 'europa') adjustments += 0.05;
+      
+      const developmentValue = Math.round(baseValue * (1 + adjustments));
+      
+      // STEP 4: Conceptualization coefficient
+      let conceptPoints = 0;
+      
+      const tiempoConc = parseInt(data.tiempo_conceptualizacion || 1);
+      conceptPoints += tiempoConc;
+      
+      const origen = data.origen_idea;
+      if (origen === 'personal') conceptPoints += 2;
+      if (origen === 'profesional') conceptPoints += 3;
+      if (origen === 'investigacion') conceptPoints += 2;
+      
+      const modelo = data.modelo_negocio;
+      if (modelo === 'ideas') conceptPoints += 1;
+      if (modelo === 'definido') conceptPoints += 2;
+      if (modelo === 'validado') conceptPoints += 4;
+      
+      const competencia = data.competencia;
+      if (competencia === 'superficial') conceptPoints += 1;
+      if (competencia === 'conocido') conceptPoints += 2;
+      if (competencia === 'documentado') conceptPoints += 3;
+      
+      let conceptCoef = 0.15;
+      if (conceptPoints >= 9) conceptCoef = 0.20;
+      if (conceptPoints >= 15) conceptCoef = 0.25;
+      if (conceptPoints >= 21) conceptCoef = 0.30;
+      if (conceptPoints >= 27) conceptCoef = 0.35;
+      
+      const conceptValue = Math.round(developmentValue * conceptCoef);
+      const adjustmentValue = Math.round(baseValue * adjustments);
+      const totalValue = developmentValue + conceptValue;
+      
+      // Calculate range (±15%)
+      const minValue = Math.round(totalValue * 0.85);
+      const maxValue = Math.round(totalValue * 1.15);
+      
+      // Update results
+      document.getElementById('valoracionRange').textContent = 
+        `${minValue.toLocaleString('es-ES')}€ - ${maxValue.toLocaleString('es-ES')}€`;
+      document.getElementById('valorDesarrollo').textContent = 
+        `${Math.round(baseValue).toLocaleString('es-ES')}€`;
+      document.getElementById('valorConceptualizacion').textContent = 
+        `${conceptValue.toLocaleString('es-ES')}€`;
+      document.getElementById('valorAjustes').textContent = 
+        `${adjustmentValue >= 0 ? '+' : ''}${adjustmentValue.toLocaleString('es-ES')}€`;
+      document.getElementById('valorTotal').innerHTML = 
+        `<strong>${totalValue.toLocaleString('es-ES')}€</strong>`;
+      
+      return { 
+        ...data, 
+        complexity, 
+        tiempoBracket, 
+        developmentValue, 
+        conceptValue, 
+        adjustmentValue, 
+        totalValue,
+        minValue,
+        maxValue
+      };
+    }
+    
+    // Save to Firebase
+    async function saveToFirebase(valuationData) {
+      try {
+        await addDoc(collection(db, "tasaciones"), {
+          ...valuationData,
+          created_at: serverTimestamp()
+        });
+        console.log('Tasación guardada');
+      } catch (error) {
+        console.error('Error guardando tasación:', error);
+      }
+    }
+    
+    // Navigation handlers
+    btnPrev.addEventListener('click', () => {
+      if (currentSection > 1) {
+        currentSection--;
+        showSection(currentSection);
+      }
+    });
+    
+    btnNext.addEventListener('click', async () => {
+      if (currentSection < totalSections) {
+        currentSection++;
+        showSection(currentSection);
+      } else {
+        // Last step - calculate and show results
+        const valuationData = calculateValuation();
+        await saveToFirebase(valuationData);
+        
+        // Hide form, show results
+        sections.forEach(s => s.classList.remove('active'));
+        document.querySelector('.form-nav').style.display = 'none';
+        results.classList.add('active');
+        progressFill.style.width = '100%';
+        progressPercent.textContent = '100%';
+        progressStep.textContent = '¡Completado!';
+        
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+    
+    // Header scroll
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+    
+    // Mobile menu
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      mobileNav.classList.toggle('active');
+    });
+    
+    // Initialize
+    showSection(1);
+  </script>
+
+</body>
+</html>
