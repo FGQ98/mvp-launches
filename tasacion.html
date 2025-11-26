@@ -525,6 +525,8 @@
         <nav class="header__nav header__nav--desktop">
           <a href="index.html#que-es">Qué es</a>
           <a href="index.html#proyectos">Proyectos</a>
+          <a href="tasacion.html" style="color: var(--color-accent);">Tasación</a>
+          <a href="protocolos.html">Protocolos</a>
           <a href="manifiesto.html">Manifiesto</a>
           <div class="header__lang">
             <button class="header__lang-btn active" data-lang="es">ES</button>
@@ -546,6 +548,8 @@
     <nav class="header__nav header__nav--mobile" id="mobileNav">
       <a href="index.html#que-es">Qué es</a>
       <a href="index.html#proyectos">Proyectos</a>
+      <a href="tasacion.html">Tasación</a>
+      <a href="protocolos.html">Protocolos</a>
       <a href="manifiesto.html">Manifiesto</a>
       <div class="header__lang">
         <button class="header__lang-btn active" data-lang="es">ES</button>
@@ -895,6 +899,14 @@
               <p class="form-section__desc">¿Tu producto ya tiene usuarios o ingresos?</p>
             </div>
             
+            <div style="background: #F0FDFA; border: 1px solid #14B8A6; border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 1.5rem;">
+              <p style="margin: 0; font-size: 0.9rem; color: #0F766E; line-height: 1.6;">
+                <strong>💡 Factor corrector:</strong> La tracción real de tu producto puede ajustar la valoración base. 
+                Usuarios activos, ingresos recurrentes y métricas documentadas son señales de validación 
+                que los inversores y emprendedores valoran especialmente.
+              </p>
+            </div>
+            
             <div class="field">
               <label class="field__label">¿El producto está publicado?</label>
               <div class="radio-options">
@@ -940,6 +952,29 @@
             </div>
             
             <div class="field">
+              <label class="field__label">De esos usuarios, ¿cuántos son activos al mes (MAU)?</label>
+              <p class="field__hint" style="font-size: 0.875rem; color: #6b7280; margin-bottom: 0.75rem;">Usuarios que han usado el producto en los últimos 30 días.</p>
+              <div class="radio-options">
+                <label class="radio-item">
+                  <input type="radio" name="usuarios_activos" value="0">
+                  <span>No tengo datos o ninguno</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="usuarios_activos" value="bajo">
+                  <span>Menos del 20% de registrados</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="usuarios_activos" value="medio">
+                  <span>Entre 20% y 50% de registrados</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="usuarios_activos" value="alto">
+                  <span>Más del 50% de registrados</span>
+                </label>
+              </div>
+            </div>
+            
+            <div class="field">
               <label class="field__label">¿El producto genera ingresos?</label>
               <div class="radio-options">
                 <label class="radio-item">
@@ -953,6 +988,51 @@
                 <label class="radio-item">
                   <input type="radio" name="ingresos" value="recurrentes">
                   <span>Sí, ingresos recurrentes</span>
+                </label>
+              </div>
+            </div>
+            
+            <div class="field">
+              <label class="field__label">Si genera ingresos recurrentes, ¿cuánto MRR aproximado?</label>
+              <p class="field__hint" style="font-size: 0.875rem; color: #6b7280; margin-bottom: 0.75rem;">MRR = Monthly Recurring Revenue (ingresos recurrentes mensuales).</p>
+              <div class="radio-options">
+                <label class="radio-item">
+                  <input type="radio" name="mrr" value="0">
+                  <span>No aplica o no tengo MRR</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="mrr" value="100">
+                  <span>1€ - 100€ / mes</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="mrr" value="500">
+                  <span>100€ - 500€ / mes</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="mrr" value="1000">
+                  <span>500€ - 1.000€ / mes</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="mrr" value="5000">
+                  <span>Más de 1.000€ / mes</span>
+                </label>
+              </div>
+            </div>
+            
+            <div class="field">
+              <label class="field__label">¿Tienes métricas documentadas?</label>
+              <div class="radio-options">
+                <label class="radio-item">
+                  <input type="radio" name="metricas" value="no">
+                  <span>No tengo métricas configuradas</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="metricas" value="basicas">
+                  <span>Métricas básicas (visitas, usuarios)</span>
+                </label>
+                <label class="radio-item">
+                  <input type="radio" name="metricas" value="completas">
+                  <span>Métricas completas (funnels, retención, cohortes)</span>
                 </label>
               </div>
             </div>

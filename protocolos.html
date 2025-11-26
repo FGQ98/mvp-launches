@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Protocolos MVP Launches: Guías prácticas para entrega, operación y pacto de socios en la transferencia de MVPs.">
+  
+  <title>Protocolos | MVP Launches</title>
+  
+  <link rel="icon" type="image/png" href="assets/logo-mvp.png">
+  
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/home.css">
+  
+  <style>
+    .protocolos {
+      padding-top: calc(72px + var(--space-12));
+      padding-bottom: var(--space-16);
+      min-height: 100vh;
+    }
+    
+    .protocolos__header {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto var(--space-10);
+    }
+    
+    .protocolos__badge {
+      display: inline-block;
+      padding: var(--space-2) var(--space-4);
+      background-color: var(--color-accent-light);
+      color: var(--color-accent);
+      font-size: var(--text-sm);
+      font-weight: var(--font-medium);
+      border-radius: var(--radius-full);
+      margin-bottom: var(--space-4);
+    }
+    
+    .protocolos__title {
+      font-size: var(--text-4xl);
+      margin-bottom: var(--space-4);
+    }
+    
+    .protocolos__subtitle {
+      font-size: var(--text-lg);
+      color: var(--color-gray-500);
+      line-height: 1.7;
+    }
+    
+    /* Disclaimer destacado */
+    .disclaimer-hero {
+      max-width: 900px;
+      margin: 0 auto var(--space-12);
+      padding: var(--space-8);
+      background: linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%);
+      border: 2px solid #FB923C;
+      border-radius: var(--radius-xl);
+      position: relative;
+    }
+    
+    .disclaimer-hero::before {
+      content: '⚠️';
+      font-size: 2rem;
+      position: absolute;
+      top: -16px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      padding: 0 var(--space-3);
+      border-radius: var(--radius-full);
+    }
+    
+    .disclaimer-hero__title {
+      font-size: var(--text-lg);
+      font-weight: var(--font-bold);
+      color: #C2410C;
+      margin-bottom: var(--space-4);
+      text-align: center;
+    }
+    
+    .disclaimer-hero__content {
+      font-size: var(--text-base);
+      color: #9A3412;
+      line-height: 1.8;
+    }
+    
+    .disclaimer-hero__content p {
+      margin-bottom: var(--space-3);
+    }
+    
+    .disclaimer-hero__content p:last-child {
+      margin-bottom: 0;
+    }
+    
+    .disclaimer-hero__content strong {
+      color: #7C2D12;
+    }
+    
+    /* Navegación interna */
+    .proto-nav {
+      max-width: 900px;
+      margin: 0 auto var(--space-12);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-4);
+    }
+    
+    .proto-nav__item {
+      padding: var(--space-6);
+      background: var(--color-white);
+      border: 2px solid var(--color-gray-100);
+      border-radius: var(--radius-lg);
+      text-align: center;
+      text-decoration: none;
+      transition: all var(--transition-base);
+    }
+    
+    .proto-nav__item:hover {
+      border-color: var(--color-accent);
+      background: var(--color-accent-light);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+    
+    .proto-nav__icon {
+      width: 56px;
+      height: 56px;
+      background: var(--color-accent-light);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto var(--space-4);
+      color: var(--color-accent);
+    }
+    
+    .proto-nav__item:hover .proto-nav__icon {
+      background: var(--color-accent);
+      color: white;
+    }
+    
+    .proto-nav__title {
+      font-family: var(--font-display);
+      font-size: var(--text-base);
+      font-weight: var(--font-semibold);
+      color: var(--color-gray-900);
+      margin-bottom: var(--space-1);
+    }
+    
+    .proto-nav__desc {
+      font-size: var(--text-sm);
+      color: var(--color-gray-500);
+    }
+    
+    /* Secciones de protocolo */
+    .proto-section {
+      max-width: 900px;
+      margin: 0 auto var(--space-16);
+      scroll-margin-top: 100px;
+    }
+    
+    .proto-section__header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      margin-bottom: var(--space-8);
+      padding-bottom: var(--space-4);
+      border-bottom: 2px solid var(--color-gray-100);
+    }
+    
+    .proto-section__number {
+      width: 48px;
+      height: 48px;
+      background: var(--color-accent);
+      color: white;
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: var(--font-bold);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    
+    .proto-section__title {
+      font-size: var(--text-2xl);
+      color: var(--color-gray-900);
+    }
+    
+    .proto-section__intro {
+      font-size: var(--text-lg);
+      color: var(--color-gray-600);
+      line-height: 1.8;
+      margin-bottom: var(--space-8);
+    }
+    
+    /* Checklist */
+    .checklist {
+      background: var(--color-white);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+    }
+    
+    .checklist__category {
+      border-bottom: 1px solid var(--color-gray-100);
+    }
+    
+    .checklist__category:last-child {
+      border-bottom: none;
+    }
+    
+    .checklist__header {
+      padding: var(--space-5) var(--space-6);
+      background: var(--color-gray-50);
+      font-weight: var(--font-semibold);
+      color: var(--color-gray-700);
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+    }
+    
+    .checklist__header-icon {
+      width: 24px;
+      height: 24px;
+      color: var(--color-accent);
+    }
+    
+    .checklist__items {
+      padding: var(--space-4) var(--space-6);
+    }
+    
+    .checklist__item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+      padding: var(--space-3) 0;
+      border-bottom: 1px dashed var(--color-gray-100);
+    }
+    
+    .checklist__item:last-child {
+      border-bottom: none;
+    }
+    
+    .checklist__check {
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--color-gray-300);
+      border-radius: var(--radius-sm);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    
+    .checklist__text {
+      flex: 1;
+    }
+    
+    .checklist__text strong {
+      color: var(--color-gray-900);
+    }
+    
+    .checklist__text span {
+      display: block;
+      font-size: var(--text-sm);
+      color: var(--color-gray-500);
+      margin-top: var(--space-1);
+    }
+    
+    /* Cards de operación */
+    .operation-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-6);
+    }
+    
+    .operation-card {
+      background: var(--color-white);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-card);
+      padding: var(--space-8);
+      border-left: 4px solid var(--color-accent);
+      transition: all var(--transition-base);
+    }
+    
+    .operation-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .operation-card__badge {
+      display: inline-block;
+      padding: var(--space-1) var(--space-3);
+      background: var(--color-accent-light);
+      color: var(--color-accent);
+      font-size: var(--text-xs);
+      font-weight: var(--font-semibold);
+      border-radius: var(--radius-full);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: var(--space-4);
+    }
+    
+    .operation-card__title {
+      font-size: var(--text-xl);
+      margin-bottom: var(--space-3);
+      color: var(--color-gray-900);
+    }
+    
+    .operation-card__desc {
+      font-size: var(--text-base);
+      color: var(--color-gray-600);
+      line-height: 1.7;
+      margin-bottom: var(--space-5);
+    }
+    
+    .operation-card__details {
+      font-size: var(--text-sm);
+      color: var(--color-gray-500);
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .operation-card__details li {
+      margin-bottom: var(--space-2);
+      padding-left: var(--space-4);
+      position: relative;
+    }
+    
+    .operation-card__details li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--color-accent);
+    }
+    
+    /* Pacto de socios */
+    .pacto-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-6);
+    }
+    
+    .pacto-item {
+      background: var(--color-white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      padding: var(--space-6);
+    }
+    
+    .pacto-item__header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      margin-bottom: var(--space-4);
+    }
+    
+    .pacto-item__icon {
+      width: 40px;
+      height: 40px;
+      background: var(--color-accent-light);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-accent);
+    }
+    
+    .pacto-item__title {
+      font-size: var(--text-base);
+      font-weight: var(--font-semibold);
+      color: var(--color-gray-900);
+    }
+    
+    .pacto-item__content {
+      font-size: var(--text-sm);
+      color: var(--color-gray-600);
+      line-height: 1.7;
+    }
+    
+    .pacto-item__content strong {
+      color: var(--color-gray-700);
+    }
+    
+    /* CTA Precios */
+    .proto-cta {
+      max-width: 900px;
+      margin: var(--space-16) auto 0;
+      padding: var(--space-10);
+      background: linear-gradient(135deg, var(--color-gray-900) 0%, #1a1a2e 100%);
+      border-radius: var(--radius-xl);
+      text-align: center;
+      color: white;
+    }
+    
+    .proto-cta__title {
+      font-size: var(--text-2xl);
+      color: white;
+      margin-bottom: var(--space-3);
+    }
+    
+    .proto-cta__desc {
+      color: var(--color-gray-300);
+      margin-bottom: var(--space-6);
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .proto-cta__buttons {
+      display: flex;
+      gap: var(--space-4);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .proto-nav {
+        grid-template-columns: 1fr;
+      }
+      
+      .operation-cards {
+        grid-template-columns: 1fr;
+      }
+      
+      .pacto-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .protocolos__title {
+        font-size: var(--text-3xl);
+      }
+      
+      .proto-cta__buttons {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Watermark -->
+  <div class="page-watermark">
+    <img src="assets/logo-mvp.png" alt="">
+  </div>
+
+  <!-- ============ HEADER ============ -->
+  <header class="header" id="header">
+    <div class="container">
+      <div class="header__inner">
+        <a href="index.html" class="header__logo">
+          <img src="assets/logo-mvp.png" alt="MVP Launches">
+          <span class="header__logo-text">mvp<span>launches</span></span>
+        </a>
+        
+        <nav class="header__nav header__nav--desktop">
+          <a href="index.html#que-es">Qué es</a>
+          <a href="index.html#proyectos">Proyectos</a>
+          <a href="tasacion.html">Tasación</a>
+          <a href="protocolos.html" style="color: var(--color-accent);">Protocolos</a>
+          <a href="manifiesto.html">Manifiesto</a>
+          <div class="header__lang">
+            <button class="header__lang-btn active" data-lang="es">ES</button>
+            <span class="header__lang-sep">|</span>
+            <button class="header__lang-btn" data-lang="en">EN</button>
+          </div>
+          <a href="login.html" class="btn btn--secondary btn--small">Acceder</a>
+          <a href="registro.html" class="btn btn--primary btn--small">Registro</a>
+        </nav>
+        
+        <button class="header__hamburger" id="menuToggle" aria-label="Abrir menú">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+    
+    <nav class="header__nav header__nav--mobile" id="mobileNav">
+      <a href="index.html#que-es">Qué es</a>
+      <a href="index.html#proyectos">Proyectos</a>
+      <a href="tasacion.html">Tasación</a>
+      <a href="protocolos.html">Protocolos</a>
+      <a href="manifiesto.html">Manifiesto</a>
+      <div class="header__lang">
+        <button class="header__lang-btn active" data-lang="es">ES</button>
+        <span class="header__lang-sep">|</span>
+        <button class="header__lang-btn" data-lang="en">EN</button>
+      </div>
+      <div class="header__mobile-buttons">
+        <a href="login.html" class="btn btn--secondary">Acceder</a>
+        <a href="registro.html" class="btn btn--primary">Registro</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="protocolos">
+    <div class="container">
+      
+      <!-- Header -->
+      <div class="protocolos__header">
+        <span class="protocolos__badge">Guías prácticas</span>
+        <h1 class="protocolos__title">Protocolos de Transferencia</h1>
+        <p class="protocolos__subtitle">
+          Referencias prácticas para estructurar la entrega, operación y gobierno 
+          de un MVP. Basadas en experiencia real, no en teoría de manual.
+        </p>
+      </div>
+      
+      <!-- Disclaimer destacado -->
+      <div class="disclaimer-hero">
+        <h2 class="disclaimer-hero__title">Importante: Lee esto antes de continuar</h2>
+        <div class="disclaimer-hero__content">
+          <p>
+            <strong>Esto NO es asesoría legal.</strong> Los protocolos que encontrarás aquí son 
+            guías orientativas basadas en la práctica y experiencia acumulada. No sustituyen 
+            el consejo de un abogado especializado.
+          </p>
+          <p>
+            <strong>El resultado está condicionado a tus datos.</strong> La información que 
+            proporcionas (que no incluye datos sensibles) determina las recomendaciones. 
+            Datos imprecisos = recomendaciones imprecisas.
+          </p>
+          <p>
+            <strong>El objetivo es abrirte los ojos.</strong> Pretendemos que conozcas los aspectos 
+            relevantes por la práctica: qué preguntar, qué exigir, qué negociar. Te ahorramos 
+            tiempo y dinero al llegar a tu abogado con los deberes hechos.
+          </p>
+        </div>
+      </div>
+      
+      <!-- Navegación interna -->
+      <nav class="proto-nav">
+        <a href="#entrega" class="proto-nav__item">
+          <div class="proto-nav__icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+              <line x1="12" y1="22.08" x2="12" y2="12"/>
+            </svg>
+          </div>
+          <h3 class="proto-nav__title">Entrega del MVP</h3>
+          <p class="proto-nav__desc">Qué entregar, cómo y cuándo</p>
+        </a>
+        
+        <a href="#operacion" class="proto-nav__item">
+          <div class="proto-nav__icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+            </svg>
+          </div>
+          <h3 class="proto-nav__title">Tipo de Operación</h3>
+          <p class="proto-nav__desc">Estructuras contractuales</p>
+        </a>
+        
+        <a href="#pacto" class="proto-nav__item">
+          <div class="proto-nav__icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <h3 class="proto-nav__title">Pacto de Socios</h3>
+          <p class="proto-nav__desc">Cláusulas recomendadas</p>
+        </a>
+      </nav>
+      
+      <!-- ==================== SECCIÓN 1: ENTREGA ==================== -->
+      <section class="proto-section" id="entrega">
+        <div class="proto-section__header">
+          <span class="proto-section__number">1</span>
+          <h2 class="proto-section__title">Protocolo de Entrega del MVP</h2>
+        </div>
+        
+        <p class="proto-section__intro">
+          Checklist de elementos, formatos, plazos recomendados y condiciones para que el 
+          creador transfiera el MVP al emprendedor de forma ordenada. Una entrega mal hecha 
+          genera fricción desde el día uno.
+        </p>
+        
+        <div class="checklist">
+          
+          <!-- Documentación técnica -->
+          <div class="checklist__category">
+            <div class="checklist__header">
+              <svg class="checklist__header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+              </svg>
+              Documentación Técnica
+            </div>
+            <div class="checklist__items">
+              <div class="checklist__item">
+                <div class="checklist__check"></div>
+                <div class="checklist__text">
+                  <strong>Arquitectura del sistema</strong>
+                  <span>Diagrama de componentes, flujos de datos, dependencias. Formato: PDF o Markdown.</span>
+                </div>
+              </div>
+              <div class="checklist__item">
+                <div class="checklist__check"></div>
+                <div class="checklist__text">
+                  <strong>Stack tecnológico documentado</strong>
+                  <span>Lenguajes, frameworks, librerías con versiones. Justificación de decisiones técnicas.</span>
+                </div>
+              </div>
+              <div class="checklist__item">
+                <div class="checklist__check"></div>
+                <div class="checklist__text">
+                  <strong>Guía de instalación / despliegue</strong>
+                  <span>Paso a paso para levantar el entorno en local y en producción. Tiempo máximo: 30 min siguiendo la guía.</span>
+                </div>
+              </div>
+              <div class="checklist__item">
+                <div class="checklist__check"></div>
+                <div class="checklist__text">
+                  <strong>Documentación de APIs (si aplica)</strong>
+                  <span>Endpoints, parámetros, ejemplos de request/response. Swagger o similar.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Accesos y credenciales -->
+          <div class="checklist__category">
+            <div class="checklist__header">
+              <svg class="checklist__header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+              Accesos y Credenciales
+            </div>
+            <div class="checklist__items">
+              <div class="checklist__item">
+                <div class="checklist__check"></div>
+                <div class="checklist__text">
+                  <strong>Repositorio de código</strong>
+                  <span>Transferencia de ownership en GitHub/GitLab o copia completa con historial de commits.</span>
+                </div>
+              </div>
+              <div class="checklist__item">
+                <div class="checklist__check"></div>
+                <div class="checklist__text">
+                  <strong>Accesos a servicios cloud</strong>
+                  <span>AWS, GCP, Firebase, Vercel... Crear usuario admin para el nuevo equipo.</span>
+                </div>
+              </div>
+              <div class="checklist__item">
+                <div class="checklist__check"></div>
+                <div class="checklist__text">
+                  <strong>Dominios y DNS</strong>
+                  <span>Transferencia o delegación del dominio. Acceso al registrador.</span>
+                </div>
+              </div>
+              <div class="checklist__item">
+                <div class="checklist__check"></div>
+                <div class="checklist__text">
+                  <strong>Cuentas de terceros</strong>
+                  <span>Pasarelas de pago, email marketing, analytics, APIs externas. Listado completo con estado.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Activos digitales -->
+          <div class="checklist__category">
+            <div class="checklist__header">
+              <svg class="checklist__header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <polyline points="21 15 16 10 5 21"/>
+              </svg>
+              Activos Digitales
+            </div>
+            <div class="checklist__items">
+              <div class="checklist__item">
+                <div class="checklist__check"></div>
+                <div class="checklist__text">
+                  <strong>Archivos fuente de diseño</strong>
+                  <span>Figma, Sketch, Adobe XD. Con acceso de edición, no solo visualización.</span>
+                </div>
+              </div>
+              <div class="checklist__item">
+                <div class="checklist__check"></div>
+                <div class="checklist__text">
+                  <strong>Assets gráficos</strong>
+                  <span>Logos en vectorial (SVG, AI), iconos, imágenes en alta resolución.</span>
+                </div>
+              </div>
+              <div class="checklist__item">
+                <div class="checklist__check"></div>
+                <div class="checklist__text">
+                  <strong>Licencias de recursos</strong>
+                  <span>Tipografías, imágenes de stock, iconos. Comprobante de licencia comercial.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Datos y usuarios -->
+          <div class="checklist__category">
+            <div class="checklist__header">
+              <svg class="checklist__header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+              </svg>
+              Datos y Usuarios
+            </div>
+            <div class="checklist__items">
+              <div class="checklist__item">
+                <div class="checklist__check"></div>
+                <div class="checklist__text">
+                  <strong>Base de datos</strong>
+                  <span>Dump completo + esquema documentado. Datos de prueba separados de producción.</span>
+                </div>
+              </div>
+              <div class="checklist__item">
+                <div class="checklist__check"></div>
+                <div class="checklist__text">
+                  <strong>Consentimientos RGPD</strong>
+                  <span>Registro de consentimientos de usuarios existentes. Textos legales utilizados.</span>
+                </div>
+              </div>
+              <div class="checklist__item">
+                <div class="checklist__check"></div>
+                <div class="checklist__text">
+                  <strong>Métricas históricas</strong>
+                  <span>Export de analytics, datos de uso, KPIs relevantes desde el inicio.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Plazos -->
+          <div class="checklist__category">
+            <div class="checklist__header">
+              <svg class="checklist__header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+              Plazos Recomendados
+            </div>
+            <div class="checklist__items">
+              <div class="checklist__item">
+                <div class="checklist__check"></div>
+                <div class="checklist__text">
+                  <strong>Entrega inicial: 7-14 días</strong>
+                  <span>Desde firma del acuerdo hasta entrega de documentación y accesos básicos.</span>
+                </div>
+              </div>
+              <div class="checklist__item">
+                <div class="checklist__check"></div>
+                <div class="checklist__text">
+                  <strong>Período de soporte: 30-60 días</strong>
+                  <span>El creador resuelve dudas técnicas del nuevo equipo. Incluido en el acuerdo.</span>
+                </div>
+              </div>
+              <div class="checklist__item">
+                <div class="checklist__check"></div>
+                <div class="checklist__text">
+                  <strong>Transición completa: 90 días máximo</strong>
+                  <span>Incluye transferencia de dominios, cuentas y cierre de accesos del creador.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </section>
+      
+      <!-- ==================== SECCIÓN 2: OPERACIÓN ==================== -->
+      <section class="proto-section" id="operacion">
+        <div class="proto-section__header">
+          <span class="proto-section__number">2</span>
+          <h2 class="proto-section__title">Protocolo de la Operación</h2>
+        </div>
+        
+        <p class="proto-section__intro">
+          Según las características del proyecto, las expectativas de las partes y el contexto, 
+          existen diferentes estructuras para formalizar la transferencia. Cada una tiene 
+          implicaciones fiscales, de riesgo y de control distintas.
+        </p>
+        
+        <div class="operation-cards">
+          
+          <!-- Aportación plena -->
+          <div class="operation-card">
+            <span class="operation-card__badge">Opción A</span>
+            <h3 class="operation-card__title">Aportación Plena a NewCo</h3>
+            <p class="operation-card__desc">
+              El creador aporta el MVP como activo a una nueva sociedad a cambio de participaciones. 
+              No hay salida de dinero inicial. El valor del MVP se capitaliza.
+            </p>
+            <ul class="operation-card__details">
+              <li>Creador obtiene % de equity según valoración</li>
+              <li>Emprendedor/inversor aporta capital de trabajo</li>
+              <li>Alineación total de intereses a largo plazo</li>
+              <li>Requiere valoración previa del MVP</li>
+            </ul>
+          </div>
+          
+          <!-- Aportación con cash out -->
+          <div class="operation-card">
+            <span class="operation-card__badge">Opción B</span>
+            <h3 class="operation-card__title">Aportación con Cash-Out Parcial</h3>
+            <p class="operation-card__desc">
+              Combinación: parte del valor se paga al contado, parte se convierte en equity. 
+              El creador reduce riesgo y el comprador demuestra compromiso.
+            </p>
+            <ul class="operation-card__details">
+              <li>Típico: 20-40% en cash, resto en participaciones</li>
+              <li>El cash puede ser escalonado (hitos)</li>
+              <li>Menor dilución para el comprador que compra total</li>
+              <li>Creador mantiene skin in the game</li>
+            </ul>
+          </div>
+          
+          <!-- Licencia -->
+          <div class="operation-card">
+            <span class="operation-card__badge">Opción C</span>
+            <h3 class="operation-card__title">Licencia sin Cesión de Propiedad</h3>
+            <p class="operation-card__desc">
+              El creador mantiene la propiedad del MVP pero otorga licencia de uso y explotación. 
+              Ideal para probar antes de comprometerse o para mercados específicos.
+            </p>
+            <ul class="operation-card__details">
+              <li>Licencia exclusiva o no exclusiva</li>
+              <li>Canon fijo, variable (% ventas) o mixto</li>
+              <li>Período definido con opción de compra</li>
+              <li>Creador puede revocar si hay incumplimiento</li>
+            </ul>
+          </div>
+          
+          <!-- Compraventa con vesting -->
+          <div class="operation-card">
+            <span class="operation-card__badge">Opción D</span>
+            <h3 class="operation-card__title">Compraventa con Vesting</h3>
+            <p class="operation-card__desc">
+              Venta total del MVP pero el pago o la transferencia completa se condiciona 
+              a hitos de permanencia o rendimiento. Protege a ambas partes.
+            </p>
+            <ul class="operation-card__details">
+              <li>Pago fraccionado ligado a objetivos</li>
+              <li>Cliff típico de 6-12 meses</li>
+              <li>Vesting de 2-4 años para el pago completo</li>
+              <li>Cláusula de aceleración si hay exit</li>
+            </ul>
+          </div>
+          
+        </div>
+      </section>
+      
+      <!-- ==================== SECCIÓN 3: PACTO DE SOCIOS ==================== -->
+      <section class="proto-section" id="pacto">
+        <div class="proto-section__header">
+          <span class="proto-section__number">3</span>
+          <h2 class="proto-section__title">Protocolo de Pacto de Socios</h2>
+        </div>
+        
+        <p class="proto-section__intro">
+          El pacto de socios es el documento que regula la relación entre los socios más allá 
+          de los estatutos. Es donde se definen las reglas del juego cuando las cosas van bien... 
+          y especialmente cuando van mal.
+        </p>
+        
+        <div class="pacto-grid">
+          
+          <div class="pacto-item">
+            <div class="pacto-item__header">
+              <div class="pacto-item__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <line x1="12" y1="8" x2="12" y2="16"/>
+                  <line x1="8" y1="12" x2="16" y2="12"/>
+                </svg>
+              </div>
+              <h4 class="pacto-item__title">Distribución del Capital</h4>
+            </div>
+            <div class="pacto-item__content">
+              <strong>Qué regular:</strong> Porcentajes iniciales, valoración del MVP aportado, 
+              aportaciones futuras de capital, cláusulas antidilución para fundadores.
+            </div>
+          </div>
+          
+          <div class="pacto-item">
+            <div class="pacto-item__header">
+              <div class="pacto-item__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+              </div>
+              <h4 class="pacto-item__title">Vesting y Permanencia</h4>
+            </div>
+            <div class="pacto-item__content">
+              <strong>Qué regular:</strong> Período de consolidación de participaciones (típico 4 años), 
+              cliff inicial, qué pasa si alguien se va antes (good leaver / bad leaver).
+            </div>
+          </div>
+          
+          <div class="pacto-item">
+            <div class="pacto-item__header">
+              <div class="pacto-item__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                  <line x1="9" y1="9" x2="15" y2="15"/>
+                  <line x1="15" y1="9" x2="9" y2="15"/>
+                </svg>
+              </div>
+              <h4 class="pacto-item__title">Drag-Along y Tag-Along</h4>
+            </div>
+            <div class="pacto-item__content">
+              <strong>Drag-Along:</strong> Si mayoría vende, puede obligar a minoritarios. 
+              <strong>Tag-Along:</strong> Si mayoría vende, minoritarios pueden sumarse en mismas condiciones.
+            </div>
+          </div>
+          
+          <div class="pacto-item">
+            <div class="pacto-item__header">
+              <div class="pacto-item__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                  <polyline points="17 6 23 6 23 12"/>
+                </svg>
+              </div>
+              <h4 class="pacto-item__title">Preferencia de Liquidación</h4>
+            </div>
+            <div class="pacto-item__content">
+              <strong>Qué regular:</strong> Quién cobra primero si hay venta o liquidación. 
+              Típico: inversores recuperan primero su inversión (1x), luego se reparte resto.
+            </div>
+          </div>
+          
+          <div class="pacto-item">
+            <div class="pacto-item__header">
+              <div class="pacto-item__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                  <polyline points="14 2 14 8 20 8"/>
+                  <line x1="12" y1="18" x2="12" y2="12"/>
+                  <line x1="9" y1="15" x2="15" y2="15"/>
+                </svg>
+              </div>
+              <h4 class="pacto-item__title">No Competencia y Exclusividad</h4>
+            </div>
+            <div class="pacto-item__content">
+              <strong>Qué regular:</strong> Dedicación mínima de fundadores, prohibición de proyectos 
+              competidores, período de no competencia post-salida (1-2 años típico).
+            </div>
+          </div>
+          
+          <div class="pacto-item">
+            <div class="pacto-item__header">
+              <div class="pacto-item__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                </svg>
+              </div>
+              <h4 class="pacto-item__title">Toma de Decisiones</h4>
+            </div>
+            <div class="pacto-item__content">
+              <strong>Qué regular:</strong> Decisiones que requieren unanimidad vs. mayoría, 
+              materias reservadas (venta, ampliación, deuda), composición del consejo.
+            </div>
+          </div>
+          
+          <div class="pacto-item">
+            <div class="pacto-item__header">
+              <div class="pacto-item__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                  <line x1="12" y1="17" x2="12.01" y2="17"/>
+                </svg>
+              </div>
+              <h4 class="pacto-item__title">Resolución de Conflictos</h4>
+            </div>
+            <div class="pacto-item__content">
+              <strong>Qué regular:</strong> Mecanismo de deadlock (punto muerto), mediación previa 
+              obligatoria, arbitraje vs. tribunales, jurisdicción aplicable.
+            </div>
+          </div>
+          
+          <div class="pacto-item">
+            <div class="pacto-item__header">
+              <div class="pacto-item__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="12" y1="1" x2="12" y2="23"/>
+                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                </svg>
+              </div>
+              <h4 class="pacto-item__title">Política de Dividendos</h4>
+            </div>
+            <div class="pacto-item__content">
+              <strong>Qué regular:</strong> Cuándo y cómo se reparten beneficios, reinversión 
+              mínima obligatoria, reservas, retribución a fundadores ejecutivos.
+            </div>
+          </div>
+          
+        </div>
+      </section>
+      
+      <!-- CTA Precios -->
+      <div class="proto-cta">
+        <h2 class="proto-cta__title">¿Necesitas ayuda personalizada?</h2>
+        <p class="proto-cta__desc">
+          Informes detallados, protocolos adaptados a tu caso y videoconsultas 
+          para resolver dudas específicas.
+        </p>
+        <div class="proto-cta__buttons">
+          <a href="precios.html" class="btn btn--primary btn--large">Ver servicios y precios</a>
+          <a href="tasacion.html" class="btn btn--secondary btn--large" style="border-color: white; color: white;">Tasar mi MVP gratis</a>
+        </div>
+      </div>
+      
+    </div>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__logo">
+          <img src="assets/logo-mvp.png" alt="MVP Launches">
+          <span>mvplaunches</span>
+        </div>
+        <div class="footer__links">
+          <a href="index.html#que-es">Qué es</a>
+          <a href="index.html#proyectos">Proyectos</a>
+          <a href="protocolos.html">Protocolos</a>
+          <a href="manifiesto.html">Manifiesto</a>
+          <a href="terminos.html">Términos</a>
+          <a href="privacidad.html">Privacidad</a>
+        </div>
+      </div>
+      <p class="footer__copy">
+        © 2025 MVP Launches. Conectando proyectos con equipos.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      mobileNav.classList.toggle('active');
+    });
+    
+    // Smooth scroll para anclas
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

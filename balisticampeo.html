@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Balisticampeo - Sistema de análisis visual de agrupaciones de impactos para tiradores deportivos. Simplifica la aplicación práctica de un conocimiento complejo.">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Balisticampeo | MVP Launches">
+  <meta property="og:description" content="Balística simplificada para tiradores deportivos. Ajustes sencillos, aprendizaje asequible, mejora constante.">
+  <meta property="og:type" content="website">
+  
+  <title>Balisticampeo | MVP Launches</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../assets/logo-mvp.png">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/home.css">
+  <link rel="stylesheet" href="../css/proyecto.css">
+</head>
+<body>
+
+  <!-- ============ HEADER ============ -->
+  <header class="header" id="header">
+    <div class="container">
+      <div class="header__inner">
+        <a href="../index.html" class="header__logo">
+          <img src="../assets/logo-mvp.png" alt="MVP Launches">
+          <span class="header__logo-text">mvp<span>launches</span></span>
+        </a>
+        
+        <!-- Desktop Nav -->
+        <nav class="header__nav header__nav--desktop">
+          <a href="../index.html#que-es">Qué es</a>
+          <a href="../index.html#proyectos">Proyectos</a>
+          <a href="../manifiesto.html">Manifiesto</a>
+          <div class="header__lang">
+            <button class="header__lang-btn active" data-lang="es">ES</button>
+            <span class="header__lang-sep">|</span>
+            <button class="header__lang-btn" data-lang="en">EN</button>
+          </div>
+          <a href="../login.html" class="btn btn--secondary btn--small">Acceder</a>
+          <a href="../registro.html" class="btn btn--primary btn--small">Registro</a>
+        </nav>
+        
+        <!-- Mobile Menu Button -->
+        <button class="header__hamburger" id="menuToggle" aria-label="Abrir menú">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Mobile Nav -->
+    <nav class="header__nav header__nav--mobile" id="mobileNav">
+      <a href="../index.html#que-es">Qué es</a>
+      <a href="../index.html#proyectos">Proyectos</a>
+      <a href="../manifiesto.html">Manifiesto</a>
+      <div class="header__lang">
+        <button class="header__lang-btn active" data-lang="es">ES</button>
+        <span class="header__lang-sep">|</span>
+        <button class="header__lang-btn" data-lang="en">EN</button>
+      </div>
+      <div class="header__mobile-buttons">
+        <a href="../login.html" class="btn btn--secondary">Acceder</a>
+        <a href="../registro.html" class="btn btn--primary">Registro</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ============ PROJECT HERO ============ -->
+    <section class="project-hero">
+      <div class="project-hero__watermark">
+        <img src="../assets/logo-mvp.png" alt="" aria-hidden="true">
+      </div>
+      <div class="container">
+        <a href="../index.html#proyectos" class="back-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          Volver a proyectos
+        </a>
+        <div class="project-hero__inner">
+          <div class="project-hero__content">
+            <div>
+              <span class="project-hero__badge">Herramienta</span>
+              <span class="project-hero__tag">Actividades en el campo</span>
+            </div>
+            <h1 class="project-hero__title">Balisticampeo</h1>
+            <p class="project-hero__tagline">Simplifica la aplicación práctica de un conocimiento complejo</p>
+            <p class="project-hero__description">
+              Sistema de análisis visual de agrupaciones de impactos para tiradores deportivos. 
+              Ajustes sencillos, aprendizaje asequible y mejora constante. El uso responsable, 
+              ético y seguro de armas deportivas, al alcance de todos los aficionados.
+            </p>
+            <div class="project-hero__ctas">
+              <a href="#formulario" class="btn btn--primary btn--large">Me interesa</a>
+              <a href="https://balisticampeo.com" target="_blank" rel="noopener" class="btn btn--secondary btn--large">
+                Visitar web
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                  <polyline points="15 3 21 3 21 9"/>
+                  <line x1="10" y1="14" x2="21" y2="3"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="project-hero__image">
+            <img src="../assets/proyectos/balisticampeo-thumb.png" alt="Balisticampeo">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SECCIÓN 1: DESCRIPCIÓN Y RACIONAL ============ -->
+    <section class="project-section" id="descripcion">
+      <div class="container">
+        <div class="project-section__header">
+          <h2>Por qué existe este proyecto</h2>
+          <p>El racional detrás de Balisticampeo y el problema que resolvemos.</p>
+        </div>
+        
+        <div class="racional__grid">
+          <div class="racional__content">
+            <p>
+              La balística es una ciencia fascinante pero intimidante. Para el tirador deportivo 
+              aficionado, entender por qué sus disparos se agrupan de cierta manera, cómo ajustar 
+              la mira o qué variables afectan a la precisión puede ser <strong>un muro técnico 
+              difícil de escalar</strong>.
+            </p>
+            <p>
+              Existen herramientas profesionales, pero están pensadas para expertos. Hay contenido 
+              educativo, pero disperso y a menudo contradictorio. El resultado: muchos tiradores 
+              deportivos aprenden por ensayo y error, desperdiciando tiempo, munición y motivación.
+            </p>
+            <p>
+              <strong>Balisticampeo simplifica lo complejo.</strong> Analizamos visualmente las 
+              agrupaciones de impactos, traducimos los datos en recomendaciones claras y guiamos 
+              al tirador hacia la mejora constante. Sin necesidad de ser ingeniero balístico.
+            </p>
+            <p>
+              Interfaz amigable, compatible con cualquier dispositivo, pensada para usar en el campo. 
+              Porque el conocimiento técnico no debería ser una barrera para disfrutar del tiro 
+              deportivo de forma responsable, ética y segura.
+            </p>
+          </div>
+          
+          <aside class="racional__sidebar">
+            <div class="racional__card">
+              <h4>Problema real</h4>
+              <p>El conocimiento balístico es farragoso y complejo para quien no tiene formación técnica.</p>
+            </div>
+            <div class="racional__card">
+              <h4>Solución práctica</h4>
+              <p>Traducimos datos de impacto en ajustes sencillos y recomendaciones accionables.</p>
+            </div>
+            <div class="racional__card">
+              <h4>Uso responsable</h4>
+              <p>Fomentamos el tiro deportivo ético y seguro, facilitando el aprendizaje progresivo.</p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SECCIÓN 2: PROPUESTA DE LANZAMIENTO ============ -->
+    <section class="project-section project-section--alt" id="propuesta">
+      <div class="container">
+        <div class="project-section__header">
+          <h2>Propuesta de lanzamiento</h2>
+          <p>Qué ofrecemos, qué buscamos y cómo estructuramos la colaboración.</p>
+        </div>
+        
+        <div class="propuesta__grid">
+          <div class="propuesta__item">
+            <div class="propuesta__icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 18 22 12 16 6"/>
+                <polyline points="8 6 2 12 8 18"/>
+              </svg>
+            </div>
+            <h4>MVP funcional</h4>
+            <p>Aplicación web desarrollada con sistema de análisis de agrupaciones y generación de recomendaciones.</p>
+          </div>
+          
+          <div class="propuesta__item">
+            <div class="propuesta__icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+              </svg>
+            </div>
+            <h4>Documentación</h4>
+            <p>Especificaciones técnicas, análisis de mercado nicho y roadmap de evolución del producto.</p>
+          </div>
+          
+          <div class="propuesta__item">
+            <div class="propuesta__icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                <line x1="12" y1="17" x2="12.01" y2="17"/>
+              </svg>
+            </div>
+            <h4>Conocimiento de dominio</h4>
+            <p>Experiencia en el sector y comprensión de las necesidades reales del tirador deportivo.</p>
+          </div>
+        </div>
+        
+        <div class="propuesta__terms">
+          <h3>Condiciones orientativas</h3>
+          <div class="propuesta__terms-grid">
+            <div class="propuesta__term">
+              <svg class="propuesta__term-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              <div>
+                <h5>Participación del creador</h5>
+                <p>El creador mantiene un porcentaje de la propiedad y royalties sobre ingresos brutos.</p>
+              </div>
+            </div>
+            <div class="propuesta__term">
+              <svg class="propuesta__term-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              <div>
+                <h5>Perfil buscado</h5>
+                <p>Emprendedor con afinidad al sector y/o inversor interesado en nicho de tiro deportivo.</p>
+              </div>
+            </div>
+            <div class="propuesta__term">
+              <svg class="propuesta__term-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              <div>
+                <h5>Valoración</h5>
+                <p>Basada en esfuerzo de conceptualización y desarrollo. El valor de la idea lo determina el mercado.</p>
+              </div>
+            </div>
+            <div class="propuesta__term">
+              <svg class="propuesta__term-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              <div>
+                <h5>Riesgo compartido</h5>
+                <p>Retribuciones variables ligadas a resultados. El éxito se reparte entre todas las partes.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SECCIÓN 3: FORMULARIO ============ -->
+    <section class="project-section form-section" id="formulario">
+      <div class="container">
+        <div class="project-section__header" style="text-align: center; margin-left: auto; margin-right: auto;">
+          <h2>¿Te interesa Balisticampeo?</h2>
+          <p>Cuéntanos quién eres y qué te atrae de este proyecto. Sin compromiso.</p>
+        </div>
+        
+        <div class="form__container">
+          <form id="contactForm">
+            <input type="hidden" name="proyecto" value="balisticampeo">
+            
+            <div class="form__group">
+              <label class="form__label" for="nombre">Nombre completo *</label>
+              <input type="text" id="nombre" name="nombre" class="form__input" required>
+            </div>
+            
+            <div class="form__group">
+              <label class="form__label" for="email">Email *</label>
+              <input type="email" id="email" name="email" class="form__input" required>
+            </div>
+            
+            <div class="form__group">
+              <label class="form__label">¿Cómo te defines? *</label>
+              <div class="form__radio-group">
+                <label class="form__radio">
+                  <input type="radio" name="perfil" value="emprendedor" required>
+                  <span>Emprendedor</span>
+                </label>
+                <label class="form__radio">
+                  <input type="radio" name="perfil" value="inversor">
+                  <span>Inversor</span>
+                </label>
+                <label class="form__radio">
+                  <input type="radio" name="perfil" value="observador">
+                  <span>Observador</span>
+                </label>
+              </div>
+            </div>
+            
+            <div class="form__group">
+              <label class="form__label" for="linkedin">LinkedIn (opcional)</label>
+              <input type="url" id="linkedin" name="linkedin" class="form__input" placeholder="https://linkedin.com/in/tu-perfil">
+            </div>
+            
+            <div class="form__group">
+              <label class="form__label" for="mensaje">¿Qué te atrae de este proyecto? *</label>
+              <textarea id="mensaje" name="mensaje" class="form__textarea" required placeholder="Cuéntanos brevemente tu interés y qué podrías aportar..."></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn--primary form__submit">Enviar solicitud</button>
+            
+            <p class="form__note">
+              Tus datos solo se usarán para contactarte sobre este proyecto.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__logo">
+          <img src="../assets/logo-mvp.png" alt="MVP Launches">
+          <span>mvplaunches</span>
+        </div>
+        <div class="footer__links">
+          <a href="../index.html#que-es">Qué es</a>
+          <a href="../index.html#proyectos">Proyectos</a>
+          <a href="../aplicar.html">Participar</a>
+          <a href="/cdn-cgi/l/email-protection#543c3b3835143922243835213a373c31277a373b39">Contacto</a>
+        </div>
+      </div>
+      <p class="footer__copy">
+        © 2025 MVP Launches. Conectando proyectos con equipos.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="module">
+    import { initForm } from '../js/form-handler.js';
+    
+    // Initialize form
+    initForm('contactForm');
+    
+    // Header scroll effect
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      mobileNav.classList.toggle('active');
+    });
+
+    // Language toggle (placeholder)
+    document.querySelectorAll('.header__lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.header__lang-btn').forEach(b => b.classList.remo
